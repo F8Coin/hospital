@@ -1,0 +1,47 @@
+.body {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: -10;
+    background-image: url('../img/home_bg1.jpg');
+    background-repeat: no-repeat;
+    background-position: 0px 0px;
+    background-size: 100% 100%;
+}
+
+.containerInner {
+    padding: 1.875rem 1.25rem;
+}
+
+.containerInner .title {
+    padding-top: 1.875rem;
+    text-align: center;
+    color: #ffffff;
+    letter-spacing: .25rem;
+    font-size: 2rem;
+}
+
+.containerInner .hostipalTel {
+    font-weight: 700;
+    color: #e7e7e7;
+    font-size: 1.875rem;
+    position: fixed;
+    bottom: 9.375rem;
+    width: 100%;
+    text-align: center;
+}
+
+.containerInner .footerBox .applyBtn {
+    width: 12.5rem;
+    height: 3.75rem;
+    line-height: 3.75rem;
+    text-align: center;
+    color: #ffffff;
+    position: fixed;
+    bottom: 3.75rem;
+    font-size: 1.5rem;
+    border: 1px solid #e7e7e7;
+    border-radius: .375rem;
+    left: 50%;
+    transform: translateX(-50%);
+}
