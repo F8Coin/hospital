@@ -22,8 +22,20 @@
 </body>
 </html>
 <script src="./js/jQuery/jquery-3.4.0.js"></script>
+<script src="./js/common.js"></script>
 <script>
     $(function(){
-        $("#home_bg").height($("#home_bg").height());
+        // 匹配移动端设备高度
+        // $("#home_bg").height($("#home_bg").height());
+        var baseUrl= 'http://49.235.145.4' ;
+        var id= getUrlParam(hospitalId);
+        $.ajax({
+            url: '/api/hospital?hospitalId:'+id,
+            type: 'GET',
+            success: $(function(res){
+                console.log(res.code)
+            })
+
+        })
     })
 </script>
