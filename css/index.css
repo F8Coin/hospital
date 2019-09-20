@@ -8,12 +8,12 @@
     background-position: 0px 0px;
     background-size: 100% 100%;
 }
-
+/* --------  入口信息页面 --------*/
 .containerInner {
     padding: 1.875rem 1.25rem;
 }
 
-.containerInner .title {
+.containerInner .hostipalName {
     padding-top: 1.875rem;
     text-align: center;
     color: #ffffff;
@@ -45,3 +45,5 @@
     left: 50%;
     transform: translateX(-50%);
 }
+
+

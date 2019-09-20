@@ -1,0 +1,107 @@
+.headerBar>ul {
+    padding: 0rem .75rem;
+    width: 100%;
+    position: absolute;
+    z-index: 999;
+    font-size: 0px;
+}
+
+.headerBar>ul>li {
+    display: inline-block;
+    height: 5rem;
+    margin-top: 1.25rem;
+    text-align: center;
+    width: 25%;
+}
+
+.headerBar>ul>li>.stepCont {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 50%;
+    border: 1px solid #e7e7e7;
+    margin: 0 auto;
+    line-height: 2.25rem;
+    margin-bottom: .375rem;
+    color: #e7e7e7;
+}
+
+.headerBar>ul>li>.stepCont>.succFlag {
+    font-size: 1.125rem;
+    line-height: 1.875rem;
+}
+
+.headerBar>ul>li>.title {
+    color: #e7e7e7;
+}
+
+.headerBar>ul>li:first-child>.stepCont>.stepNum {
+    display: none;
+}
+
+.headerBar>ul>li:first-child>.stepCont>.succFlag {
+    display: block;
+}
+
+.headerBar>ul>.stepIndex>.stepCont>.succFlag {
+    display: none;
+}
+
+#pageBox {
+    top: 9.75rem;
+}
+
+#pageBox>.tipBox>.addText {
+    text-align:center;
+    font-size:1.125rem;
+    font-weight:700
+}
+
+#nextBtn {
+    width: 100%;
+    border-radius: .375rem;
+}
+
+
+/* 1.0 医院公告内容弹窗 */
+
+.commonTip>.tipBox {
+    height: 21.875rem;
+    overflow: auto;
+    padding: 1.25rem 1.875rem;
+}
+
+.commonTip>.tipBox>.tipTitle {
+    text-align: center;
+    font-size: 1.25rem;
+} 
+
+.commonTip>.tipBox>.firstText {
+    font-size: 1rem;
+}
+
+.commonTip>.tipBox>.tipText {
+    font-size: 1rem;
+}
+
+/* --------预约信息page1页面--------*/
+
+#page1 .optionAbout>.flag>.text {
+    padding-left: .5rem; 
+}
+
+#page1 .optionAbout>.price {
+    color: #333333;
+    font-size: 1rem;
+    padding-left: .5rem;
+    padding-bottom: .25rem;
+}
+
+/* -------预约信息page2页面------- */
+#page2>.baseInfo>.formItem>.zoomList>li,
+#page3>.baseInfo>.formItem>.zoomList>li {
+    width: 45%;
+    height: 2.625rem;
+    line-height: 2.625rem;
+}
+
+/* -------预约信息page3页面------- */

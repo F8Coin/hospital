@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../css/weui.min.css">
+    <link rel="stylesheet" href="../lib/bootstrap-3.3.7-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../lib/mobileSelect/mobileSelect.css">
+    <link rel="stylesheet" href="../css/regist.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/appointment.css">
+    <title>预约病例</title>
+    <style>
+        /* 修改弹窗头部样式 */
+        .layui-layer .layui-layer-title {
+            color: #ffffff;
+            font-size: 1.125rem;
+            background-color: #836FFF;
+        }
+    </style>
+</head>
+<body>
+    <div class="containerOut">
+        <div class="headerBar">
+            <ul><!-- 步骤流程进度条 -->
+                <li class="step1 stepIndex">
+                    <p class="stepCont">
+                        <span class="stepNum">1</span>
+                        <span class="succFlag glyphicon glyphicon-ok"></span>
+                    </p>
+                    <span class="title">选择方案</span>
+                </li>
+                <li class="step2 stepIndex">
+                    <p class="stepCont">
+                        <span class="stepNum">2</span>
+                        <span class="succFlag glyphicon glyphicon-ok"></span>
+                    </p>
+                    <span class="title">信息填写</span>
+                </li>
+                <li class="step3 stepIndex">
+                    <p class="stepCont">
+                        <span class="stepNum">3</span>
+                        <span class="succFlag glyphicon glyphicon-ok"></span>
+                    </p>
+                    <span class="title">复印用途</span>
+                </li>
+                <li class="step4 stepIndex">
+                    <p class="stepCont">
+                        <span class="stepNum">4</span>
+                        <span class="succFlag glyphicon glyphicon-ok"></span>
+                    </p>
+                    <span class="title">提交申请</span>
+                </li>
+            </ul>
+        </div>
+        <div class="containerInner pageCont" id="pageBox">
+            <div id="page1" class="stepPage" style="display: block">
+                <div class="baseInfo hospitalInfo">
+                    <img src="../img/userIcon02.jpg" alt="" class="hospitalIcon">
+                    <span class="hospitalName">郑州大学第一附属医院</span>
+                    <a href="javascript:void(0)" class="more">更多医院<span class="glyphicon glyphicon-chevron-right"></span></a>
+                </div>
+                <div class="baseInfo">
+                    <p class="title">服务方案</p>
+                    <div class="formItem">
+                        <p class="labTitle"><span class="isRequired">*</span>获取病历方式</p>
+                        <div class="content clearfix" id="goodsList">
+                            <label for="left" class="left fl optionAbout">
+                                <p class="flag">
+                                    <span class="text">方案1</span>
+                                </p>
+                                <p class="price">预约自提</p>
+                                <input class="selectBtn" type="radio" id="left" name="plan">
+                            </label>
+                            <label for="right" class="right fr optionAbout">
+                                <p class="flag">
+                                    <span class="text">方案2</span>
+                                </p>
+                                <p class="price">邮寄</p>
+                               <input class="selectBtn" type="radio" id="right" name="plan">
+                            </label>
+                        </div>
+                    </div>
+                    <!-- <div class="formItem">
+                        <p class="labTitle"><span class="isRequired">*</span>业务类型选择</p>
+                        <div class="content clearfix" id="goodsList">
+                            <label for="left" class="left fl optionAbout">
+                                <p class="flag">
+                                    <span class="text">类型1</span>
+                                </p>
+                                <p class="price">住院病历</p>
+                                <input class="selectBtn" type="radio" id="left" name="plan">
+                            </label>
+                            <label for="right" class="right fr optionAbout">
+                                <p class="flag">
+                                    <span class="text">类型2</span>
+                                </p>
+                                <p class="price">其它病例</p>
+                               <input class="selectBtn" type="radio" id="right" name="plan">
+                            </label>
+                        </div>
+                    </div> -->
+                </div>
+                <div class="agreeRule">
+                    <input type="checkbox" checked> 我已阅读并接受<a href="javascript:void" class="ruleAbout">《病案复印申请协议》</a>
+                </div>
+                <div class="tipBox">
+                    <p class="tipTitle">方案说明</p><br>
+                    <p class="tipText">方案一：</p>
+                    <p class="tipText">病案室复印完病历后,下发自提通知给用户,用户收到自提通知后,凭自提码去病案室窗口提取病历(请在病案室工作时间内前往)</p><br>
+                    <p class="tipText">方案二：</p>
+                    <p class="tipText">为保证及时收到,请确保收件地址准确无误,快递公司由EMS承揽</p>
+                </div>
+            </div>
+            <div id="page2" class="stepPage" style="display: none">
+                <div class="baseInfo">
+                    <div class="formItem">
+                        <p class="labTitle"><span class="isRequired">*</span>姓名<span class="addText">(患者)</span> </p>
+                        <input class="placeholderText companyName" type="text" placeholder="请输入患者姓名">
+                    </div>
+                    <div class="formItem">
+                        <p class="labTitle"><span class="isRequired">*</span>证件号<span class="addText">(患者)</span> </p>
+                        <input class="placeholderText companyName" type="text" placeholder="请输入患者证件号">
+                    </div>
+                    <div class="formItem">
+                        <p class="labTitle"><span class="isRequired">*</span>住院号</p>
+                        <input class="placeholderText companyName" type="text" placeholder="住院号示例: 01500112">
+                    </div>
+                    <div class="formItem">
+                        <p class="labTitle"><span class="isRequired">*</span>病区/科室</p>
+                        <input class="placeholderText companyName" type="text" placeholder="请输入患者病区或科室">
+                    </div>
+                    <div class="formItem">
+                        <p class="labTitle"><span class="isRequired">*</span>出院状态</p>
+                        <ul class="zoomList" id="bankBox">
+                            <li>已出院</li>
+                            <li>未出院</li>
+                        </ul>
+                    </div>
+                    <div class="formItem">
+                        <p class="labTitle"><span class="isRequired">*</span>入院时间</p>
+                        <input id="startDate" class="placeholderText" type="text" placeholder="请输入入院时间">
+                    </div>
+                    <div class="formItem">
+                        <p class="labTitle"><span class="isRequired">*</span>出院时间</p>
+                        <input id="endDate" class="placeholderText" type="text" placeholder="请输入出院时间">
+                    </div>
+                    <div class="formItem">
+                        <p class="labTitle"><span class="isRequired">*</span>证件类型</p>
+                        <ul class="zoomList" id="area">
+                            <li>身份证</li>
+                            <li>身份证 (代办)</li>
+                            <li>未成年(代办)</li>
+                            <li>死亡 (代办)</li>
+                        </ul>
+                    </div>
+                    <div class="formItem clearfix">
+                        <p class="labTitle"><span class="isRequired">*</span>上传资料</p>
+                        <div class="uploadBox fl fileBox licenseUpload">
+                            <input type="file" class="uploadInput" onchange="uploadFile($(this),$(this).parent())">
+                            <img src="" alt="" class="showImg">
+                            <p class="typeText">身份证正面<span class="requiredFlag">*</span></p>
+                        </div>
+                        <div class="uploadBox fr fileBox legalId1Upload isShowItem">
+                            <input type="file" class="uploadInput" onchange="uploadFile($(this),$(this).parent())">
+                            <img src="" alt="" class="showImg">
+                            <p class="typeText">患者手持身份证正面<span class="requiredFlag">*</span></p>
+                        </div>
+                        <div class="uploadBox fl fileBox legalId2Upload isShowItem">
+                            <input type="file" class="uploadInput" onchange="uploadFile($(this),$(this).parent())">
+                            <img src="" alt="" class="showImg">
+                            <p class="typeText">出院结账发票<span class="requiredFlag">*</span></p>
+                        </div>
+                        <!-- <div class="uploadBox fr fileBox adminId1Upload isShowItem">
+                            <input type="file" class="uploadInput" onchange="uploadFile($(this),$(this).parent())">
+                            <img src="" alt="" class="showImg">
+                            <p class="typeText">网银管理员身份正面<span class="requiredFlag">*</span></p>
+                        </div>
+                        <div class="uploadBox fl fileBox adminId2Upload isShowItem">
+                            <input type="file" class="uploadInput" onchange="uploadFile($(this),$(this).parent())">
+                            <img src="" alt="" class="showImg">
+                            <p class="typeText">网银管理员身份反面<span class="requiredFlag">*</span></p>
+                        </div> -->
+                    </div>
+                </div>
+                <div class="receiveInfo">
+                    <p class="title">收件人信息</p>
+                    <div class="formItem">
+                        <p class="labTitle"><span class="isRequired">*</span>&nbsp;收件人姓名</p>
+                        <input class="placeholderText receiverName" type="text" placeholder="请输入收件人姓名">
+                    </div>
+                    <div class="formItem">
+                        <p class="labTitle"><span class="isRequired">*</span>&nbsp;联系电话</p>
+                        <input class="placeholderText receiverTel" type="text" placeholder="请输入收件人联系电话">
+                    </div>
+                    <div class="formItem">
+                        <p class="labTitle"><span class="isRequired">*</span>&nbsp;收件地址</p>
+                        <input class="placeholderText receiverAdd" type="text" placeholder="请输入收件地址">
+                    </div>
+                </div>
+                <div class="tipBox">
+                    <p class="tipTitle">温馨提示</p><br>
+                    <p class="tipText">一、拍照注意事项</p>
+                    <p class="tipText">1.请注意第一张是"身份证正面",第二张是"手持身份证正面",第三张是"出院结账发票"</p>
+                    <p class="tipText">2.照片拍照时确保"身份证"所有信息清晰可见</p>
+                    <p class="tipText">3.照片需免冠,手持身份证正面"五官必须清晰可见",身份证与身体保持平行,并且靠近摄像头,建议不要化妆</p>                               
+                </div> 
+            </div>
+            <div id="page3" class="stepPage" style="display: none">
+                <div class="baseInfo">
+                    <p class="title">复印用途</p>
+                    <div class="formItem">
+                        <p class="labTitle"><span class="isRequired">*</span>&nbsp;常规用途</p>
+                        <input id="normal" class="alignment" value="1"/>
+                    </div>
+                    <div class="formItem">
+                        <p class="labTitle">其它用途</p>
+                        <ul class="zoomList" id="bankBox">
+                            <li>其它用途1</li>
+                            <li>其它用途2</li>
+                            <li>其它用途3</li>
+                            <li>其它用途4</li>
+                        </ul>
+                    </div>
+                    <div class="formItem">
+                        <p class="labTitle">患者留言</p>
+                        <textarea class="remarkText" name="" id="" cols="" rows="" placeholder="您对申请的特殊要求 (选填)"></textarea>
+                    </div>
+                </div>
+                <div class="userRule">
+                    <input type="checkbox" checked> 我已阅读并接受<a href="javascript:void" class="ruleAbout">《用户使用条款》</a>
+                </div>
+            </div>
+            <div id="page4" class="stepPage" style="display: none">
+                <div class="orderInfo">
+                    <p class="title">申请资料</p>
+                    <div class="content">
+                        <p class="orderItem">
+                            <span class="labTitle">注册商标名称<span class="colon">:</span></span>
+                            <span class="labContent tradeMarkName"></span>
+                        </p>
+                        <p class="orderItem">
+                            <span class="labTitle">申请类别<span class="colon">:</span></span>
+                            <span class="labContent applicationType"></span>
+                        </p>
+                        <p class="orderItem">
+                            <span class="labTitle">产品范围<span class="colon">:</span></span>
+                            <span class="labContent productLimt"></span>
+                        </p>  
+                        <p class="orderItem">
+                            <span class="labTitle">联系人<span class="colon">:</span></span>
+                            <span class="labContent contactName"></span>
+                        </p>  
+                        <p class="orderItem">
+                            <span class="labTitle">联系电话<span class="colon">:</span></span>
+                            <span class="labContent contactTel"></span>
+                        </p>  
+                        <p class="orderItem">
+                            <span class="labTitle">备注说明<span class="colon">:</span></span>
+                            <span class="labContent remarkText"></span>
+                        </p>  
+                    </div>
+                </div>
+                <div class="orderInfo">
+                    <p class="title">服务方案</p>
+                    <div class="content">
+                        <table class="sealListBox w100">
+                            <tbody id="sealList">
+                                <tr class="sealItem">
+                                    <td class="sealName">方案1</td>
+                                    <td class="sealAccount">×1</td>
+                                    <td class="sealPrice">￥350</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="paymentBox clearfix">
+            <!-- <span class="fl payInfo">
+                订单金额 : <span class="RMB_flag">￥</span><span class="payAmount"></span>
+            </span> -->
+            <a href="javascript:void(0)" class="fr paymentBtn " id="nextBtn">下一步</a>
+        </div>
+    </div>
+    <!-- page1 医院公告内容弹窗 -->
+    <div id="rulesText" class="commonTip" style="display:none">
+        <div class="tipBox">
+            <p class="tipTitle">申请须知</p><br>
+            <p class="firstText">尊敬的患者和家属您好:</p>
+            <p class="tipText">方案一：</p>
+            <p class="tipText">病案室复印完病历后,下发自提通知给用户,用户收到自提通知后,凭自提码去病案室窗口提取病历(请在病案室工作时间内前往)</p><br>
+            <p class="tipText">方案二：</p>
+            <p class="tipText">为保证及时收到,请确保收件地址准确无误,快递公司由EMS承揽</p>
+            <p class="tipTitle">申请须知</p><br>
+            <p class="tipText">方案一：</p>
+            <p class="tipText">病案室复印完病历后,下发自提通知给用户,用户收到自提通知后,凭自提码去病案室窗口提取病历(请在病案室工作时间内前往)</p><br>
+            <p class="tipText">方案二：</p>
+            <p class="tipText">为保证及时收到,请确保收件地址准确无误,快递公司由EMS承揽</p>
+            <p class="tipTitle">申请须知</p><br>
+            <p class="tipText">方案一：</p>
+            <p class="tipText">病案室复印完病历后,下发自提通知给用户,用户收到自提通知后,凭自提码去病案室窗口提取病历(请在病案室工作时间内前往)</p><br>
+            <p class="tipText">方案二：</p>
+            <p class="tipText">为保证及时收到,请确保收件地址准确无误,快递公司由EMS承揽</p>
+            <p class="endText"></p>
+        </div>
+    </div>
+    <!-- page2 用户使用条款弹窗 -->
+    <div id="userRuleText" class="commonTip" style="display:none">
+        <div class="tipBox">
+            <p class="tipTitle">用户使用条款</p><br>
+            <p class="firstText">尊敬的患者和家属您好:</p>
+            <p class="tipText">方案一：</p>
+            <p class="tipText">病案室复印完病历后,下发自提通知给用户,用户收到自提通知后,凭自提码去病案室窗口提取病历(请在病案室工作时间内前往)</p><br>
+            <p class="tipText">方案二：</p>
+            <p class="tipText">为保证及时收到,请确保收件地址准确无误,快递公司由EMS承揽</p>
+            <p class="tipTitle">申请须知</p><br>
+            <p class="tipText">方案一：</p>
+            <p class="tipText">病案室复印完病历后,下发自提通知给用户,用户收到自提通知后,凭自提码去病案室窗口提取病历(请在病案室工作时间内前往)</p><br>
+            <p class="tipText">方案二：</p>
+            <p class="tipText">为保证及时收到,请确保收件地址准确无误,快递公司由EMS承揽</p>
+            <p class="tipTitle">申请须知</p><br>
+            <p class="tipText">方案一：</p>
+            <p class="tipText">病案室复印完病历后,下发自提通知给用户,用户收到自提通知后,凭自提码去病案室窗口提取病历(请在病案室工作时间内前往)</p><br>
+            <p class="tipText">方案二：</p>
+            <p class="tipText">为保证及时收到,请确保收件地址准确无误,快递公司由EMS承揽</p>
+            <p class="endText"></p>
+        </div>
+    </div>
+</body>
+</html>
+<script src="../js/jQuery/jquery-3.4.0.js"></script>
+<script src="../lib/layer/layer.js"></script>
+<script src="../lib/mobileSelect/mobileSelect.js"></script>
+<script src="../lib/mobileSelect/selectDate.js"></script>
+<script src="../lib/num-alignment.js"></script>
+<script src="../js/common.js"></script>
+<script>
+    $(function(){
+        // 点击下一步
+        var pageIndex= 1;
+        $('#nextBtn').on('click',function(){
+            if(pageIndex<4) {
+                $('#pageBox .stepPage').css('display','none');
+                $('#pageBox .stepPage:eq('+pageIndex+')').css('display','block');
+                $('.headerBar>ul>li:eq('+pageIndex+')').slice(0,pageIndex+1).find('.stepCont>.stepNum').css('display','none'); // 隐藏流程数字
+                $('.headerBar>ul>li:eq('+pageIndex+')').slice(0,pageIndex+1).find('.stepCont>.succFlag').css('display','block'); // 显示当前完成状态标识
+                pageIndex++;
+            }else {
+                layer.msg('功能开发中...业务办理请联系客服')
+                return;
+            }
+        })
+
+        // 医院公告内容弹窗
+        $('.agreeRule').on('click','.ruleAbout',function(){
+            layer.open({
+                type:'1',
+                content: $('#rulesText')
+            })
+        })
+
+        // 用户使用条款内容弹窗
+        $('.userRule').on('click','.ruleAbout',function(){
+            layer.open({
+                type:'1',
+                content: $('#userRuleText')
+            })
+        })
+
+        // 选择入院时间
+        $.selectDate("#startDate",{
+            start:2000,
+            end:2099,
+            select:[2020,5,6],
+            title:'入院时间'
+        },function (data) {
+            // console.log(data);
+        });
+
+        // 选择出院时间
+        $.selectDate("#endDate",{
+            start:2000,
+            end:2099,
+            select:[2020,5,6],
+            title:'出院时间'
+        },function (data) {
+            // console.log(data);
+        });
+        // 自定义类型：参数为数组，可多条数据
+		alignmentFns.createType([{"test": {"step" : 1, "min" : 1, "max" : 999, "digit" : 0}}]);
+		
+		// 初始化
+		alignmentFns.initialize();
+		
+		// 销毁
+		alignmentFns.destroy();
+		
+		// js动态改变数据
+		$("#normal1").attr("data-max", "12")
+		// 初始化
+		alignmentFns.initialize();
+    })
+</script>
