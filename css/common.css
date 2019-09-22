@@ -93,7 +93,10 @@
 }
 
 .isShowItem {
-    display: none;
+    /* display: none; */
+    float: left;
+    width: 40%;
+    margin-right: 1.875rem;
 }
 
 /* 单文件上传*/
@@ -128,10 +131,11 @@
 
 /* 多文件上传 */
 .baseInfo>.formItem>.fileBox {
-    width: 48%;
+    width: 40%;
     display: inline-block;
     margin-bottom: 1.875rem;
     text-align: center;
+    margin-right: 1.875rem;
 }
 
 .baseInfo>.formItem>.fileBox>.uploadInput {
@@ -161,7 +165,7 @@
 /* 多文件显示 */
 .orderItem>.labContent>.showImg {
     width: 80%;
-    /* height: 100%; */
+    margin-top: .75rem;
 }
 
 /* 办理区域*/
@@ -317,7 +321,7 @@
 .customInfo .formItem .customBox {
     line-height: 1.5rem;
     margin-left: 2rem;
-    padding-top: .5rem;
+    padding-top: .7rem;
 }
 
 .customInfo .formItem .customBox>.title, 
@@ -380,6 +384,10 @@
     color: #fff;
     border-radius: 3.125rem;
     background-color: #836FFF;
+}
+
+.paymentBox>.submitPay {
+    display: none;
 }
 
 /* 医院标识 */

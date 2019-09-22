@@ -96,6 +96,10 @@
     padding-bottom: .25rem;
 }
 
+#page1 .agreeRule {
+    margin-top: .75rem;
+}
+
 /* -------预约信息page2页面------- */
 #page2>.baseInfo>.formItem>.zoomList>li,
 #page3>.baseInfo>.formItem>.zoomList>li {
@@ -105,3 +109,42 @@
 }
 
 /* -------预约信息page3页面------- */
+.useTable>thead>tr>td {
+    font-weight: 700;
+}
+
+.useTable>thead>tr>td.amountTitle {
+    text-align: center;
+}
+
+.useTable>tbody>tr>td.price {
+    color: red;
+    font-weight: 700;
+}
+
+.useTable>tbody>tr>td.amount>.spinner {
+    margin: 0 auto;
+}
+
+/* -------预约信息page4页面------- */
+
+.selectTable>tbody>tr>td {
+    text-align: left;
+    font-weight: 700;
+    height: 2rem;
+    line-height: 2rem;
+}
+
+.selectTable>tbody>tr>td.price {
+    color: red;
+    width: 30%;
+    text-align: center;
+}
+
+.selectTable>tbody>tr>td.amount {
+    width: 20%;
+}
+
+.selectTable>tbody>tr>td.type {
+    width: 50%;
+}
