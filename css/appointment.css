@@ -148,3 +148,59 @@
 .selectTable>tbody>tr>td.type {
     width: 50%;
 }
+
+/* -------医院列表信息页面------- */
+
+.headerBar>.browser {
+    padding: 1.25rem;
+    margin-top: .625rem;
+}
+
+.headerBar>.browser>.express-area {
+    height: 2.625rem;
+    line-height: 2.625rem;
+}
+
+#expressArea {
+    height: 2.625rem;
+    line-height: 2.625rem;
+}
+
+#expressArea>dl {
+    top: .1875rem;
+}
+
+#expressArea>dl>dd {
+    margin-left: 7rem;
+}
+
+#expressArea>dl>dt, 
+#expressArea>dl>dd {
+    font-size: 1rem;
+}
+
+#pageBox>.searchBox {
+    margin-bottom: 1.25rem;
+}
+
+.hospitalInfo>.typeBox {
+    text-align: right;
+    margin-top: .5rem;
+}
+
+.hospitalInfo>.typeBox>.type {
+    margin-left: .375rem;
+    border-radius: .25rem;
+    font-size: .875rem;
+}
+
+.hospitalInfo>.typeBox>.recordType {
+    border: 1px solid #836FFF;
+    padding: .375rem;
+    color: #836FFF
+}
+.hospitalInfo>.typeBox>.sendType {
+    border: 1px solid chocolate;
+    padding: .375rem;
+    color: chocolate
+}

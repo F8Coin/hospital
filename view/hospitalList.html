@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../css/weui.min.css">
+    <link rel="stylesheet" href="../lib/bootstrap-3.3.7-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../lib/area/style.css">
+    <link rel="stylesheet" href="../css/regist.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/appointment.css">
+    <title>医院列表</title>
+</head>
+<body>
+    <div class="containerOut">
+        <div class="headerBar">
+            <div class="browser">
+                <!--选择地区-->
+                <section class="express-area">
+                    <a id="expressArea" href="javascript:void(0)">
+                        <dl>
+                            <dt><span class="glyphicon glyphicon-map-marker"></span> 选择地区：</dt>
+                            <dd>省 > 市 > 区/县</dd>
+                        </dl>
+                    </a>
+                </section>
+                <!--选择地区弹层-->
+                <section id="areaLayer" class="express-area-box">
+                    <header>
+                        <h3>选择地区</h3>
+                        <a id="backUp" class="back" href="javascript:void(0)" title="返回"></a>
+                        <a id="closeArea" class="close" href="javascript:void(0)" title="关闭"></a>
+                    </header>
+                    <article id="areaBox">
+                        <ul id="areaList" class="area-list"></ul>
+                    </article>
+                </section>
+                <!--遮罩层-->
+                <div id="areaMask" class="mask"></div>
+            </div>
+        </div>
+        <div class="containerInner pageCont" id="pageBox">
+            <div class="row searchBox">
+                <div class="col-lg-6">
+                    <div class="input-group">
+                    <input type="text" class="form-control" placeholder="请输入搜索医院名称">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">查询</button>
+                    </span>
+                    </div>
+                </div>
+            </div>
+            <div id="page1" class="stepPage" style="display: block">
+                <div class="baseInfo hospitalInfo">
+                    <img src="../img/userIcon02.jpg" alt="" class="hospitalIcon">
+                    <span class="hospitalName">郑州大学第一附属医院</span>
+                    <p class="typeBox">
+                        <span class="recordType type">住院病历</span>
+                        <span class="sendType type">邮寄</span>
+                        <span class="sendType type">自提</span>
+                        <span class="sendType type">预约自提</span>
+                    </p>
+                </div>
+                <div class="baseInfo hospitalInfo">
+                    <img src="../img/userIcon02.jpg" alt="" class="hospitalIcon">
+                    <span class="hospitalName">郑州大学第一附属医院</span>
+                    <p class="typeBox">
+                        <span class="recordType type">住院病历</span>
+                        <span class="sendType type">邮寄</span>
+                        <span class="sendType type">自提</span>
+                        <span class="sendType type">预约自提</span>
+                    </p>
+                </div>
+                <div class="baseInfo hospitalInfo">
+                    <img src="../img/userIcon02.jpg" alt="" class="hospitalIcon">
+                    <span class="hospitalName">郑州大学第一附属医院</span>
+                    <p class="typeBox">
+                        <span class="recordType type">住院病历</span>
+                        <span class="sendType type">邮寄</span>
+                        <span class="sendType type">自提</span>
+                        <span class="sendType type">预约自提</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script src="../js/jQuery/jquery-3.4.0.js"></script>
+<script src="../lib/layer/layer.js"></script>
+<script src="../lib/area/jquery.area.js"></script>
+<script src="../js/common.js"></script>
