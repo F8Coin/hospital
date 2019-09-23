@@ -470,6 +470,10 @@
         },function (data) {
         });
 
+        $("#startDate").focus(function(){
+            document.activeElement.blur();
+        });
+
         // 选择出院时间
         $.selectDate("#endDate",{
             start:2000,
@@ -477,6 +481,10 @@
             select:[2020,5,6],
             title:'出院时间'
         },function (data) {
+        });
+
+        $("#endDate").focus(function(){
+            document.activeElement.blur();
         });
        
         // 复印用途计数
