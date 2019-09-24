@@ -102,10 +102,19 @@
 
 /* -------预约信息page2页面------- */
 #page2>.baseInfo>.formItem>.zoomList>li,
-#page3>.baseInfo>.formItem>.zoomList>li {
+#page3>.baseInfo>.formItem>.zoomList>li,
+#page3>.baseInfo>.formItem>.zoomType>li {
     width: 45%;
     height: 2.625rem;
     line-height: 2.625rem;
+}
+
+#page2>.receiveInfo>.formItem>.labTitle>.addText {
+    color: #999999
+}
+
+#expressArea>dl>.areaText {
+    margin-left: 0.5rem;
 }
 
 /* -------预约信息page3页面------- */

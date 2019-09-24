@@ -169,13 +169,15 @@
 }
 
 /* 办理区域*/
-.baseInfo>.formItem>.zoomList {
+.baseInfo>.formItem>.zoomList,
+.baseInfo>.formItem>.zoomType {
     font-size: 0px;
     margin-top: .5rem;
 }
 
 .baseInfo>.formItem>.zoomList>li,
-.baseInfo>.formItem>.closeSeal>li {
+.baseInfo>.formItem>.closeSeal>li,
+.baseInfo>.formItem>.zoomType>li {
     height: 1.875rem;
     width: 5rem;
     text-align: center;
@@ -188,7 +190,8 @@
 }
 
 .baseInfo>.formItem>.zoomList>li.checkedItem,
-.baseInfo>.formItem>.closeSeal>li.checkedItem {
+.baseInfo>.formItem>.closeSeal>li.checkedItem,
+.baseInfo>.formItem>.zoomType>li.checkedItem {
     background-color: #836FFF;
     border-color: #836FFF;
     color: #fff;
