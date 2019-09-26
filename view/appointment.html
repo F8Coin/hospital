@@ -57,7 +57,7 @@
             </ul>
         </div>
         <div class="containerInner pageCont" id="pageBox">
-            <div id="page1" class="stepPage" style="display: none">
+            <div id="page1" class="stepPage" style="display: block">
                 <div class="baseInfo hospitalInfo">
                     <img src="../img/userIcon02.jpg" alt="" class="hospitalIcon">
                     <span class="hospitalName">郑州大学第一附属医院</span>
@@ -250,7 +250,7 @@
                     <p class="tipText">3.照片需免冠,手持身份证正面"五官必须清晰可见",身份证与身体保持平行,并且靠近摄像头,建议不要化妆</p>                               
                 </div>  -->
             </div>
-            <div id="page3" class="stepPage" style="display: block">
+            <div id="page3" class="stepPage" style="display: none">
                 <div class="baseInfo">
                     <p class="title">复印内容</p>
                     <div class="formItem">
@@ -469,6 +469,13 @@
 <script src="../js/common.js"></script>
 <script>
     $(function(){
+        // 根据医院id获取详情
+        // var hospitalId= getUrlParam('hospitalId');
+        hospitalInfo('1')
+
+
+
+
         // 点击下一步
         var pageIndex= 1;
         $('#nextBtn').on('click',function(){
@@ -487,6 +494,8 @@
                 return;
             }
         })
+
+        // 提交支付
 
         // 医院公告内容弹窗
         $('.agreeRule').on('click','.ruleAbout',function(){

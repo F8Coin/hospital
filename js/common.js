@@ -93,3 +93,21 @@ function uploadFile(inputEle,containerEle) {
 $('.zoomList').on('click','li',function(e){
     $(this).addClass('checkedItem').siblings('li').removeClass('checkedItem');
 })
+
+
+// 根据医院id获取信息
+
+function hospitalInfo(id) {
+    $.ajax({
+        url: 'http://49.235.145.4:81/api/hospital/'+id,
+        type: 'GET',
+        success: $(function(res){
+            if(res.code == '0') {
+                console.log(res.code);
+                console.log(res);
+            }else {
+                layer.msg(res.msg);
+            }
+        })
+    })
+}

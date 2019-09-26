@@ -96,6 +96,10 @@
     padding-bottom: .25rem;
 }
 
+#page1>.hospitalInfo>.more {
+    display: none;
+}
+
 #page1 .agreeRule {
     margin-top: .75rem;
 }
