@@ -77,10 +77,13 @@
 
 .commonTip>.tipBox>.firstText {
     font-size: 1rem;
+    line-height: 1.5rem;
+    padding-bottom: .375rem;
 }
 
 .commonTip>.tipBox>.tipText {
     font-size: 1rem;
+    line-height: 1.25rem;
 }
 
 /* --------预约信息page1页面--------*/
@@ -96,12 +99,23 @@
     padding-bottom: .25rem;
 }
 
-#page1>.hospitalInfo>.more {
-    display: none;
-}
+/* #page1>.hospitalInfo>.more {
+    display: none; //更多医院
+} */
 
 #page1 .agreeRule {
     margin-top: .75rem;
+    vertical-align: middle;
+    padding-bottom: 1.25rem;
+}
+
+#page1 .agreeRule>input {
+    vertical-align: middle;
+}
+
+#page1 .agreeRule>.ruleAbout,
+#page1 .agreeRule>.text {
+    vertical-align: middle;
 }
 
 /* -------预约信息page2页面------- */
@@ -164,6 +178,10 @@
 
 /* -------医院列表信息页面------- */
 
+.hospitalContainer>.containerInner {
+    top: 9.75rem;
+}
+
 .headerBar>.browser {
     padding: 1.25rem;
     margin-top: .625rem;
@@ -192,28 +210,34 @@
     font-size: 1rem;
 }
 
-#pageBox>.searchBox {
-    margin-bottom: 1.25rem;
-}
-
-.hospitalInfo>.typeBox {
-    text-align: right;
+.hospitalList>.hospitalInfo>.typeBox {
+    /* text-align: right; */
     margin-top: .5rem;
+    padding-left: 3rem;
 }
 
-.hospitalInfo>.typeBox>.type {
+.hospitalList>.hospitalInfo>.typeBox>.type {
     margin-left: .375rem;
     border-radius: .25rem;
     font-size: .875rem;
 }
 
-.hospitalInfo>.typeBox>.recordType {
+.hospitalList>.hospitalInfo>.typeBox>.recordType {
     border: 1px solid #836FFF;
     padding: .375rem;
     color: #836FFF
 }
-.hospitalInfo>.typeBox>.sendType {
+.hospitalList>.hospitalInfo>.typeBox>.sendType {
     border: 1px solid chocolate;
     padding: .375rem;
     color: chocolate
 }
+
+.headerBar>.searchBox {
+    padding: 1.875rem 1.875rem 0rem;
+}
+
+.hospitalList>.hospitalInfo {
+    display: block;
+}
+

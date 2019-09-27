@@ -1,3 +1,4 @@
+var baseUrl= 'http://49.235.145.4:81';
 // 获取url中传递的参数
 function getUrlParam(name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
@@ -60,8 +61,11 @@ function getCode() {
 function uploadFile(inputEle,containerEle) {
     fs= inputEle[0].files[0];
     var reads= new FileReader();
+    var base64Img;
     reads.readAsDataURL(fs);
     reads.onload=function (e) {
+        base64Img= e.target.result;
+        console.log(base64Img)
         // var targetSrc = this.result;
         // containerEle.find('.showImg').attr('src',targetSrc);  
         // containerEle.removeClass('uploadIcon');
@@ -70,11 +74,10 @@ function uploadFile(inputEle,containerEle) {
     var formData= new FormData();
     formData.append('file',fs);
     $.ajax({
-        url: baseUrl+'/api/upload/upload',
-        // url: test1+'/api/upload/upload',
+        url: baseUrl+'/api/common/uploadImg',
         type: 'POST',
         cache: false, //上传文件不需要缓存
-        data: formData,
+        data: {'base64String':base64Img},
         processData: false, // 告诉jQuery不要去处理发送的数据
         contentType: false, // 告诉jQuery不要去设置Content-Type请求头
         success: function (res) {
@@ -95,19 +98,3 @@ $('.zoomList').on('click','li',function(e){
 })
 
 
-// 根据医院id获取信息
-
-function hospitalInfo(id) {
-    $.ajax({
-        url: 'http://49.235.145.4:81/api/hospital/'+id,
-        type: 'GET',
-        success: $(function(res){
-            if(res.code == '0') {
-                console.log(res.code);
-                console.log(res);
-            }else {
-                layer.msg(res.msg);
-            }
-        })
-    })
-}

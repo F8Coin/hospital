@@ -57,10 +57,10 @@
             </ul>
         </div>
         <div class="containerInner pageCont" id="pageBox">
-            <div id="page1" class="stepPage" style="display: block">
+            <div id="page1" class="stepPage" style="display: none">
                 <div class="baseInfo hospitalInfo">
-                    <img src="../img/userIcon02.jpg" alt="" class="hospitalIcon">
-                    <span class="hospitalName">郑州大学第一附属医院</span>
+                    <img src="" alt="" class="hospitalIcon">
+                    <span class="hospitalName"></span>
                     <a href="./hospitalList.html" class="more">更多医院<span class="glyphicon glyphicon-chevron-right"></span></a>
                 </div>
                 <div class="baseInfo">
@@ -109,8 +109,8 @@
                     <div class="formItem clearfix">
                         <img src="../img/userIcon03.jpg" alt="" class="customIcon fl">
                         <p class="customBox fl">
-                            <span class="title">业务负责人王小姐</span><br>
-                            <span class="tel"><span class="glyphicon glyphicon-phone-alt telIcon"></span> 13823590716</span>
+                            <span class="title">业务负责人<span class="name">王小姐</span></span><br>
+                            <span class="tel"><span class="glyphicon glyphicon-phone-alt telIcon"></span> <span class="text"></span></span>
                         </p>
                     </div>
                 </div>
@@ -122,10 +122,10 @@
                     <p class="tipText">为保证及时收到,请确保收件地址准确无误,快递公司由EMS承揽</p>
                 </div>
                 <div class="agreeRule">
-                    <input type="checkbox" checked> 我已阅读并接受<a href="javascript:void" class="ruleAbout">《病案复印申请协议》</a>
+                    <input type="checkbox" checked> <span class="text">我已阅读并接受</span><a href="javascript:void" class="ruleAbout">《病案复印申请协议》</a>
                 </div>
             </div>
-            <div id="page2" class="stepPage" style="display: none">
+            <div id="page2" class="stepPage" style="display: block">
                 <div class="baseInfo">
                     <div class="formItem">
                         <p class="labTitle"><span class="isRequired">*</span>姓名<span class="addText">(患者)</span> </p>
@@ -417,23 +417,9 @@
     <!-- page1 医院公告内容弹窗 -->
     <div id="rulesText" class="commonTip" style="display:none">
         <div class="tipBox">
-            <p class="tipTitle">申请须知</p><br>
-            <p class="firstText">尊敬的患者和家属您好:</p>
-            <p class="tipText">方案一：</p>
-            <p class="tipText">病案室复印完病历后,下发自提通知给用户,用户收到自提通知后,凭自提码去病案室窗口提取病历(请在病案室工作时间内前往)</p><br>
-            <p class="tipText">方案二：</p>
-            <p class="tipText">为保证及时收到,请确保收件地址准确无误,快递公司由EMS承揽</p>
-            <p class="tipTitle">申请须知</p><br>
-            <p class="tipText">方案一：</p>
-            <p class="tipText">病案室复印完病历后,下发自提通知给用户,用户收到自提通知后,凭自提码去病案室窗口提取病历(请在病案室工作时间内前往)</p><br>
-            <p class="tipText">方案二：</p>
-            <p class="tipText">为保证及时收到,请确保收件地址准确无误,快递公司由EMS承揽</p>
-            <p class="tipTitle">申请须知</p><br>
-            <p class="tipText">方案一：</p>
-            <p class="tipText">病案室复印完病历后,下发自提通知给用户,用户收到自提通知后,凭自提码去病案室窗口提取病历(请在病案室工作时间内前往)</p><br>
-            <p class="tipText">方案二：</p>
-            <p class="tipText">为保证及时收到,请确保收件地址准确无误,快递公司由EMS承揽</p>
-            <p class="endText"></p>
+            <p class="tipTitle">公告</p><br>
+            <!-- <p class="firstText">尊敬的患者和家属您好:</p> -->
+            <p class="tipText"></p>
         </div>
     </div>
     <!-- page2 用户使用条款弹窗 -->
@@ -469,9 +455,24 @@
 <script src="../js/common.js"></script>
 <script>
     $(function(){
-        // 根据医院id获取详情
-        // var hospitalId= getUrlParam('hospitalId');
-        hospitalInfo('1')
+        var baseUrl= 'http://49.235.145.4:81';
+        // 获取医院信息方法
+        function hospitalInfo(id) {
+            $.ajax({
+                url: baseUrl+'/api/hospital/'+id,
+                type: 'GET',
+                success: function(res){
+                    $('.hospitalInfo .hospitalIcon').attr('src','http://49.235.145.4:81'+res.logo);
+                    $('.hospitalInfo .hospitalName').text(res.name);
+                    $('#rulesText>.tipBox>.tipText').text(res.notice);
+                    $('.customInfo .customBox .title>.name').text(res.sender);
+                    $('.customInfo .customBox .tel>.text').text(res.senderMobile);
+                }
+            })
+        }
+        
+        var hospitalId= getUrlParam('hospitalId')?getUrlParam('hospitalId'):"1";
+        hospitalInfo(hospitalId) // 根据id获取医院信息
 
 
 
