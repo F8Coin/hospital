@@ -65,6 +65,7 @@ function uploadFile(inputEle,containerEle) {
     reads.readAsDataURL(fs);
     reads.onload=function (e) {
         base64Img= e.target.result;
+        base64Img= base64Img.replace(/data:image\/jpeg;base64,/,'');
         console.log(base64Img)
         // var targetSrc = this.result;
         // containerEle.find('.showImg').attr('src',targetSrc);  
