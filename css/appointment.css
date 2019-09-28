@@ -128,7 +128,25 @@
 }
 
 #page2>.receiveInfo>.formItem>.labTitle>.addText {
-    color: #999999
+    color: #999999;
+}
+
+#page2>.baseInfo>.formItem>.labTitle>.addText {
+    color: #999999;
+    display: none;
+}
+
+#page2>.baseInfo>.formItem>.labTitle>.show_addText {
+    display: block;
+}
+
+
+#page2>.baseInfo>.formItem>.fileBox {
+    display: none;
+}
+
+#page2>.baseInfo>.formItem>.show_uploadBox {
+    display: block;
 }
 
 #expressArea>dl>.areaText {

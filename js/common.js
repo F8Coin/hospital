@@ -61,41 +61,102 @@ function getCode() {
 function uploadFile(inputEle,containerEle) {
     fs= inputEle[0].files[0];
     var reads= new FileReader();
-    var base64Img;
     reads.readAsDataURL(fs);
     reads.onload=function (e) {
         base64Img= e.target.result;
-        base64Img= base64Img.replace(/data:image\/jpeg;base64,/,'');
-        console.log(base64Img)
-        // var targetSrc = this.result;
-        // containerEle.find('.showImg').attr('src',targetSrc);  
-        // containerEle.removeClass('uploadIcon');
         layer.load(2)      
     };
-    var formData= new FormData();
-    formData.append('file',fs);
-    $.ajax({
-        url: baseUrl+'/api/common/uploadImg',
-        type: 'POST',
-        cache: false, //上传文件不需要缓存
-        data: {'base64String':base64Img},
-        processData: false, // 告诉jQuery不要去处理发送的数据
-        contentType: false, // 告诉jQuery不要去设置Content-Type请求头
-        success: function (res) {
-            if(res.code == 0) {
-                layer.closeAll('loading')
-                containerEle.find('.showImg').attr('src',res.data);
-            }else {
-                layer.msg(res.msg);
+    reads.onloadend= function() {
+        $.ajax({
+            url: baseUrl+'/api/common/uploadImg',
+            type: 'POST',
+            cache: false, //上传文件不需要缓存
+            data: {'base64String':base64Img},
+            // processData: false, // 告诉jQuery不要去处理发送的数据
+            // contentType: false, // 告诉jQuery不要去设置Content-Type请求头
+            success: function (res) {
+                if(res.code == 0) {
+                    layer.closeAll('loading')
+                    containerEle.find('.showImg').attr('src',res.pic);
+                }else {
+                    layer.msg(res.msg);
+                }
             }
-        }
-    })
+        })
+    } 
 }
 
 
-/* --------------办理区域----------------- */
+/* -------------- 类型选择 ----------------- */
 $('.zoomList').on('click','li',function(e){
     $(this).addClass('checkedItem').siblings('li').removeClass('checkedItem');
 })
+
+
+// function uploadFile(inputEle,containerEle){
+// 	var file=inputEle[0].files[0];
+// 	if (file.size > 10 * 1024 * 1024) {
+//         alert("上传文件大小不能超过10M");
+//         return;
+//     }
+//     setBase64(file,containerEle,toSend);
+// }
+// function setBase64(file,containerEle,fn){//图片文件转换为base64编码
+// 	if(!window.FileReader){
+// 		layer.msg('浏览器对FileReader方法不兼容');
+// 		return;
+// 	}
+// 	var reader = new FileReader();
+// 	reader.readAsDataURL(file);//读出 base64
+// 	reader.onloadend = function (){
+// 		imgCompress(reader,function(base64){
+// 			typeof fn=="function" && fn(base64 || reader.result,containerEle )//base64
+// 		});
+// 	};
+// }
+// function imgCompress(reader,callback){//图片超过尺寸压缩
+// 	var img=new Image();
+//     img.src=reader.result;
+//     img.onload=function(){
+//         layer.load(2); 
+// 		var w = this.naturalWidth, h = this.naturalHeight, resizeW = 0, resizeH = 0;  
+// 	    var maxSize = {
+// 	        width: 1000,
+// 	        height: 1000,
+// 	        level: 0.5
+// 	    };
+//       	if(w > maxSize.width || h > maxSize.height){
+//         	var multiple = Math.max(w / maxSize.width, h / maxSize.height);
+//         	resizeW = w / multiple;
+//         	resizeH = h / multiple;
+//       	}else{// 如果图片尺寸小于最大限制，则不压缩直接上传
+//         	return callback()
+//       	}
+//       	var canvas = document.createElement('canvas'),
+//       	ctx = canvas.getContext('2d');
+//     	canvas.width = resizeW;
+//     	canvas.height = resizeH;
+//     	ctx.drawImage(img, 0, 0, resizeW, resizeH);
+//       	var base64 = canvas.toDataURL('image/jpeg', maxSize.level); 
+//       	callback(base64);
+// 	}
+// }
+// function toSend(result,containerEle){//传给后端result为处理好后的base64的字符串。
+// 	$.ajax({
+//         url: baseUrl+'/api/common/uploadImg',
+//         type: 'POST',
+//         cache: false, //上传文件不需要缓存
+//         data: {'base64String':result},
+//         success: function (res) {
+//             if(res.code == 0) {
+//                 layer.closeAll('loading')
+//                 containerEle.find('.showImg').attr('src',res.pic);
+//             }else {
+//                 layer.msg(res.msg);
+//             }
+//         }
+//     })
+// }
+
 
 
