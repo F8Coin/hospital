@@ -67,12 +67,12 @@
                     <p class="title">服务方案</p>
                     <div class="formItem">
                         <p class="labTitle"><span class="isRequired">*</span>获取病历方式</p>
-                        <div class="content clearfix" id="goodsList">
+                        <div class="content clearfix" id="receiveTypeBox">
                             <label for="left" class="left fl optionAbout">
                                 <p class="flag">
                                     <span class="text">方案1</span>
                                 </p>
-                                <p class="price">预约自提</p>
+                                <p class="price">自提</p>
                                 <input class="selectBtn" type="radio" id="left" name="plan">
                             </label>
                             <label for="right" class="right fr optionAbout">
@@ -84,25 +84,6 @@
                             </label>
                         </div>
                     </div>
-                    <!-- <div class="formItem">
-                        <p class="labTitle"><span class="isRequired">*</span>业务类型选择</p>
-                        <div class="content clearfix" id="goodsList">
-                            <label for="left" class="left fl optionAbout">
-                                <p class="flag">
-                                    <span class="text">类型1</span>
-                                </p>
-                                <p class="price">住院病历</p>
-                                <input class="selectBtn" type="radio" id="left" name="plan">
-                            </label>
-                            <label for="right" class="right fr optionAbout">
-                                <p class="flag">
-                                    <span class="text">类型2</span>
-                                </p>
-                                <p class="price">其它病例</p>
-                               <input class="selectBtn" type="radio" id="right" name="plan">
-                            </label>
-                        </div>
-                    </div> -->
                 </div>
                 <div class="customInfo">
                     <p class="title">咨询方式</p>
@@ -122,22 +103,22 @@
                     <p class="tipText">为保证及时收到,请确保收件地址准确无误,快递公司由EMS承揽</p>
                 </div>
                 <div class="agreeRule">
-                    <input type="checkbox" checked> <span class="text">我已阅读并接受</span><a href="javascript:void" class="ruleAbout">《病案复印申请协议》</a>
+                    <input type="checkbox" checked class="isAgree"> <span class="text">我已阅读并接受</span><a href="javascript:void" class="ruleAbout">《病案复印申请协议》</a>
                 </div>
             </div>
             <div id="page2" class="stepPage" style="display: none">
                 <div class="baseInfo">
                     <div class="formItem">
                         <p class="labTitle"><span class="isRequired">*</span>姓名<span class="addText">(患者)</span> </p>
-                        <input class="placeholderText companyName" type="text" placeholder="请输入患者姓名">
+                        <input class="placeholderText name" type="text" placeholder="请输入患者姓名">
                     </div>
                     <div class="formItem">
                         <p class="labTitle"><span class="isRequired">*</span>证件号<span class="addText">(患者)</span> </p>
-                        <input class="placeholderText companyName" type="text" placeholder="请输入患者证件号">
+                        <input class="placeholderText papers" type="text" placeholder="请输入患者证件号">
                     </div>
                     <div class="formItem">
                         <p class="labTitle"><span class="isRequired">*</span>住院号</p>
-                        <input class="placeholderText companyName" type="text" placeholder="住院号示例: 01500112">
+                        <input class="placeholderText hospitalNum" type="text" placeholder="住院号示例: 01500112">
                     </div>
                     <!-- <div class="formItem">
                         <p class="labTitle"><span class="isRequired">*</span>病区/科室</p>
@@ -152,19 +133,19 @@
                     </div> -->
                     <div class="formItem">
                         <p class="labTitle">入院时间</p>
-                        <input id="startDate" class="placeholderText" type="text" placeholder="请输入入院时间">
+                        <input id="startDate" class="placeholderText" type="text" placeholder="请选择入院时间">
                     </div>
                     <div class="formItem">
                         <p class="labTitle"><span class="isRequired">*</span>出院时间</p>
-                        <input id="endDate" class="placeholderText" type="text" placeholder="请输入出院时间">
+                        <input id="endDate" class="placeholderText" type="text" placeholder="请选择出院时间">
                     </div>
                     <div class="formItem">
                         <p class="labTitle"><span class="isRequired">*</span>证件类型</p>
-                        <ul class="zoomList" id="area">
-                            <li class="checkedItem">身份证</li>
-                            <li>身份证 (代办)</li>
-                            <li>未成年(代办)</li>
-                            <li>死亡 (代办)</li>
+                        <ul class="zoomList" id="papersTypeBox">
+                            <li class="checkedItem papersType">身份证</li>
+                            <li class="papersType">身份证(代办)</li>
+                            <li class="papersType">未成年(代办)</li>
+                            <li class="papersType">死亡(代办)</li>
                         </ul>
                     </div>
                     <div class="formItem clearfix">
@@ -203,17 +184,17 @@
                          <div class="uploadBox fl fileBox fileBoxType2">
                             <input type="file" class="uploadInput" onchange="uploadFile($(this),$(this).parent())">
                             <img src="" alt="" class="showImg agentID_up">
-                            <p class="typeText"><span class="requiredFlag">*</span>代理人身份证正面</p>
+                            <p class="typeText"><span class="requiredFlag">*</span>代办人身份证正面</p>
                         </div>
                         <div class="uploadBox fr fileBox fileBoxType2">
                             <input type="file" class="uploadInput" onchange="uploadFile($(this),$(this).parent())">
                             <img src="" alt="" class="showImg agentID_down">
-                            <p class="typeText"><span class="requiredFlag">*</span>代理人身份证反面</p>
+                            <p class="typeText"><span class="requiredFlag">*</span>代办人身份证反面</p>
                         </div>
                         <div class="uploadBox fl fileBox fileBoxType2">
                             <input type="file" class="uploadInput" onchange="uploadFile($(this),$(this).parent())">
                             <img src="" alt="" class="showImg agentID_hand">
-                            <p class="typeText"><span class="requiredFlag">*</span>代理人手持身份证</p>
+                            <p class="typeText"><span class="requiredFlag">*</span>代办人手持身份证</p>
                         </div>
                         <div class="uploadBox fr fileBox fileBoxType2">
                             <input type="file" class="uploadInput" onchange="uploadFile($(this),$(this).parent())">
@@ -320,13 +301,6 @@
                         <input class="placeholderText receiverAdd" type="text" placeholder="详细地址: 如街道、小区、门牌号、楼栋号">
                     </div>
                 </div>
-                <!-- <div class="tipBox">
-                    <p class="tipTitle">温馨提示</p><br>
-                    <p class="tipText">一、拍照注意事项</p>
-                    <p class="tipText">1.请注意第一张是"身份证正面",第二张是"手持身份证正面",第三张是"出院结账发票"</p>
-                    <p class="tipText">2.照片拍照时确保"身份证"所有信息清晰可见</p>
-                    <p class="tipText">3.照片需免冠,手持身份证正面"五官必须清晰可见",身份证与身体保持平行,并且靠近摄像头,建议不要化妆</p>                               
-                </div>  -->
             </div>
             <div id="page3" class="stepPage" style="display: none">
                 <div class="baseInfo">
@@ -367,15 +341,12 @@
                             </tbody>
                         </table> -->
                         <ul class="zoomType" id="useType">
-                            <li>常规</li>
-                            <li>其它用途1</li>
-                            <li>其它用途2</li>
-                            <li>其它用途3</li>
+                            <!-- 用途列表 -->
                         </ul>
                     </div>
                     <div class="formItem">
-                        <p class="labTitle"><span class="isRequired">*</span>复印份数<span class="addText"> (份)</span> </p>
-                        <input class="placeholderText amount" type="number" placeholder="请输入需要复印的份数">
+                        <p class="labTitle"><span class="isRequired">*</span>复印份数</p>
+                        <input class="placeholderText amount" type="number" placeholder="请输入需要复印数量">
                     </div>
                     <div class="formItem">
                         <p class="labTitle">患者留言</p>
@@ -392,93 +363,179 @@
                     <div class="content clearfix">
                         <p class="orderItem">
                             <span class="labTitle">就医医院<span class="colon">:</span></span>
-                            <span class="labContent tradeMarkName">郑州大学第一附属医院</span>
+                            <span class="labContent hospitalName"></span>
                         </p>
                         <p class="orderItem">
                             <span class="labTitle">患者姓名<span class="colon">:</span></span>
-                            <span class="labContent applicationType">蒋为民</span>
+                            <span class="labContent name"></span>
                         </p>
                         <p class="orderItem">
                             <span class="labTitle">证件类型<span class="colon">:</span></span>
-                            <span class="labContent applicationType">身份证</span>
+                            <span class="labContent papersType"></span>
                         </p>
                         <p class="orderItem">
                             <span class="labTitle">证件号码<span class="colon">:</span></span>
-                            <span class="labContent applicationType">420281198623464534</span>
+                            <span class="labContent papersNum"></span>
                         </p>
                         <p class="orderItem">
+                            <span class="labTitle">住院号<span class="colon">:</span></span>
+                            <span class="labContent hospitalNum"></span>
+                        </p>
+                        <p class="orderItem startTimeBox">
                             <span class="labTitle">入院时间<span class="colon">:</span></span>
-                            <span class="labContent productLimt">2019-05-25</span>
+                            <span class="labContent startTime"></span>
                         </p>    
                         <p class="orderItem">
                             <span class="labTitle">出院时间<span class="colon">:</span></span>
-                            <span class="labContent contactTel">2019-08-16</span>
+                            <span class="labContent endTime"></span>
                         </p>   
                         <p class="orderItem">
                             <span class="labTitle">获取病历方式<span class="colon">:</span></span>
-                            <span class="labContent contactTel">邮寄</span>
+                            <span class="labContent receiveType"></span>
+                        </p>   
+                        <p class="orderItem">
+                            <span class="labTitle">患者留言<span class="colon">:</span></span>
+                            <span class="labContent addText"></span>
                         </p>   
                         <p class="orderItem">
                             <span class="labTitle">上传图片资料<span class="colon">:</span></span>
-                        </p>   
-                        <div class="orderItem legal1Item uploadFile">
-                            <span class="labTitle">患者身份证正面</span>
-                            <p class="labContent legal1_img">
-                                <img class="showImg" src='../img/userIcon01.jpg' alt="">
+                        </p>
+                        
+                        <!-- 类型1 身份证 -->
+                        <div class="orderItem  uploadFile fileBoxType1">
+                            <p class="labContent">
+                                <img class="showImg paitentsID_up" src='' alt="">
                              </p>
+                             <span class="labTitle">患者身份证正面</span>
                          </div>
-                        <div class="orderItem legal2Item uploadFile">
-                            <span class="labTitle">患者手持身份证正面</span>
-                            <p class="labContent legal2_img">
-                                <img class="showImg" src='../img/userIcon02.jpg' alt="">
+                        <div class="orderItem  uploadFile fileBoxType1">
+                            <p class="labContent">
+                                <img class="showImg paitentsID_down" src='' alt="">
                              </p>
-                         </div>  
-                        <div class="orderItem legal2Item uploadFile">
-                            <span class="labTitle">出院小结报告</span>
-                            <p class="labContent legal2_img">
-                                <img class="showImg" src='../img/userIcon03.jpg' alt="">
+                             <span class="labTitle">患者手持身份证正面</span>
+                        </div>  
+                        <div class="orderItem  uploadFile fileBoxType1">
+                            <p class="labContent">
+                                <img class="showImg pay_invoice" src='' alt="">
+                            </p>
+                            <span class="labTitle">出院结账发票</span>
+                        </div> 
+                        
+                        <!-- 类型2 身份证(代办) -->
+                        <div class="orderItem  uploadFile fileBoxType2">
+                            <p class="labContent">
+                                <img class="showImg agentID_up" src='' alt="">
                              </p>
-                         </div>  
+                             <span class="labTitle">代办人身份证正面</span>
+                         </div>
+                        <div class="orderItem  uploadFile fileBoxType2">
+                            <p class="labContent">
+                                <img class="showImg agentID_down" src='' alt="">
+                             </p>
+                             <span class="labTitle">代办人身份证反面</span>
+                        </div>  
+                        <div class="orderItem  uploadFile fileBoxType2">
+                            <p class="labContent">
+                                <img class="showImg agentID_hand" src='' alt="">
+                            </p>
+                            <span class="labTitle">代办人手持身份证</span>
+                        </div> 
+                        <div class="orderItem  uploadFile fileBoxType2">
+                            <p class="labContent">
+                                <img class="showImg paitentsID_up" src='' alt="">
+                             </p>
+                             <span class="labTitle">患者身份证正面</span>
+                         </div>
+                        <div class="orderItem  uploadFile fileBoxType2">
+                            <p class="labContent">
+                                <img class="showImg paitentsID_down" src='' alt="">
+                             </p>
+                             <span class="labTitle">患者身份证反面</span>
+                        </div>  
+                        <div class="orderItem  uploadFile fileBoxType2">
+                            <p class="labContent">
+                                <img class="showImg permitText" src='' alt="">
+                            </p>
+                            <span class="labTitle">授权委托书</span>
+                        </div> 
+
+                        <!-- 类型3 未成年代办 -->
+                        <div class="orderItem  uploadFile fileBoxType3">
+                            <p class="labContent">
+                                <img class="showImg houseBook_home" src='' alt="">
+                             </p>
+                             <span class="labTitle">户口本首页</span>
+                         </div>
+                        <div class="orderItem  uploadFile fileBoxType3">
+                            <p class="labContent">
+                                <img class="showImg guardianID_up" src='' alt="">
+                             </p>
+                             <span class="labTitle">监护人手持身份证正面</span>
+                        </div>  
+                        <div class="orderItem  uploadFile fileBoxType3">
+                            <p class="labContent">
+                                <img class="showImg pay_invoice" src='' alt="">
+                            </p>
+                            <span class="labTitle">出院结账发票</span>
+                        </div> 
+
+                        <!-- 类型4 死亡代办 -->
+                        <div class="orderItem  uploadFile fileBoxType4">
+                            <p class="labContent">
+                                <img class="showImg death_prove" src='' alt="">
+                             </p>
+                             <span class="labTitle">死亡证明</span>
+                         </div>
+                        <div class="orderItem  uploadFile fileBoxType4">
+                            <p class="labContent">
+                                <img class="showImg relation_prove" src='' alt="">
+                             </p>
+                             <span class="labTitle">代办人和患者关系证明</span>
+                        </div>  
+                        <div class="orderItem  uploadFile fileBoxType4">
+                            <p class="labContent">
+                                <img class="showImg agentID_hand" src='' alt="">
+                            </p>
+                            <span class="labTitle">代办人手持身份证</span>
+                        </div> 
+                        <div class="orderItem  uploadFile fileBoxType4">
+                            <p class="labContent">
+                                <img class="showImg agentID_up" src='' alt="">
+                             </p>
+                             <span class="labTitle">代办人身份证正面</span>
+                        </div>  
+                        <div class="orderItem  uploadFile fileBoxType4">
+                            <p class="labContent">
+                                <img class="showImg agentID_down" src='' alt="">
+                            </p>
+                            <span class="labTitle">代办人身份证反面</span>
+                        </div> 
                     </div>
                 </div>
                 <div class="orderInfo">
                     <p class="title">复印用途</p><br>
                     <div class="content">
                         <table class="w100 selectTable">
-                            <tbody>
-                                <tr class="useItem">
-                                    <td class="type">常规</td>
-                                    <td class="amount">×1</td>
-                                    <td class="price">￥30</td>
-                                </tr>
-                                <tr class="useItem">
-                                    <td class="type">其它用途1</td>
-                                    <td class="amount">×1</td>
-                                    <td class="price">￥25</td>
-                                </tr>
-                                <tr class="useItem">
-                                    <td class="type">其它用途2</td>
-                                    <td class="amount">×1</td>
-                                    <td class="price">￥35</td>
-                                </tr>
+                            <tbody id="selectTypeBox">
+                               <!-- 用途列表 -->
                             </tbody>
                         </table>
                     </div>
                 </div>
-                <div class="orderInfo">
+                <div class="orderInfo receiveInfo">
                     <p class="title">收货信息</p><br>
                     <div class="content">
                         <p class="orderItem">
                             <span class="labTitle">收件人<span class="colon">:</span></span>
-                            <span class="labContent contactTel">张龙</span>
+                            <span class="labContent receiverName">张龙</span>
                         </p>   
                         <p class="orderItem">
                             <span class="labTitle">联系电话<span class="colon">:</span></span>
-                            <span class="labContent contactTel">18603059551</span>
+                            <span class="labContent receiverTel">18603059551</span>
                         </p>   
                         <p class="orderItem">
                             <span class="labTitle">收件地址<span class="colon">:</span></span>
-                            <span class="labContent contactTel">深圳市龙华新区龙华街道办</span>
+                            <span class="labContent receiverAdd">深圳市龙华新区龙华街道办</span>
                         </p>   
                     </div>
                 </div>
@@ -488,7 +545,7 @@
             <span class="fl payInfo submitPay">
                 订单金额 : <span class="RMB_flag">￥</span><span class="payAmount"></span>
             </span>
-            <a href="javascript:void(0)" class="fr paymentBtn submitPay">微信支付</a>
+            <a href="javascript:void(0)" class="fr paymentBtn submitPay" id="payBtn">微信支付</a>
             <a href="javascript:void(0)" class="fr paymentBtn " id="nextBtn">下一步</a>
         </div>
     </div>
@@ -534,6 +591,8 @@
 <script>
     $(function(){
         var baseUrl= 'http://49.235.145.4:81';
+        var hospitalId= getUrlParam('hospitalId')?getUrlParam('hospitalId'):"1"; // 没有传入id默认显示id为1的医院
+
         // 获取医院信息方法
         function hospitalInfo(id) {
             $.ajax({
@@ -545,29 +604,287 @@
                     $('#rulesText>.tipBox>.tipText').text(res.notice);
                     $('.customInfo .customBox .title>.name').text(res.sender);
                     $('.customInfo .customBox .tel>.text').text(res.senderMobile);
+                    $('#page4>.orderInfo>.content>.orderItem>.hospitalName').text(res.name);
                 }
             })
         }
         
-        var hospitalId= getUrlParam('hospitalId')?getUrlParam('hospitalId'):"1";
-        hospitalInfo(hospitalId) // 根据id获取医院信息
+        hospitalInfo(hospitalId) 
 
+        // 获取复印用途列表
+        function getTypeList(id) {
+            $.ajax({
+                url: baseUrl+'/api/purpose/list?hospitalId='+id,
+                type: 'GET',
+                success: function(res) {
+                    for (let i = 0; i < res.length; i++) {
+                        var typeItem= '<li class="type">'+res[i]+'</li>'
+                        $('#useType').append(typeItem);
+                    }
+                }
+            })
+        }
 
-
+        getTypeList(hospitalId)
 
         // 点击下一步
         var pageIndex= 1;
         $('#nextBtn').on('click',function(){
             if(pageIndex<4) {
-                $('#pageBox .stepPage').css('display','none');
-                $('#pageBox .stepPage:eq('+pageIndex+')').css('display','block');
-                $('.headerBar>ul>li:eq('+pageIndex+')').slice(0,pageIndex+1).find('.stepCont>.stepNum').css('display','none'); // 隐藏流程数字
-                $('.headerBar>ul>li:eq('+pageIndex+')').slice(0,pageIndex+1).find('.stepCont>.succFlag').css('display','block'); // 显示当前完成状态标识
-                pageIndex++;
-                if(pageIndex == 4) {
+                if(pageIndex == 1) {
+                    var isSelect= $('#receiveTypeBox>.optionAbout>.selectBtn:checked').length
+                    var isAgree= $('.agreeRule>.isAgree:checked').length
+                    if(isSelect == "0") {
+                        layer.msg('请选择获取病例方式')
+                        return;
+                    }
+                    if(isAgree == "0") {
+                        layer.msg('请勾选病案复印申请协议')
+                        return;
+                    }
+                    if(isSelect != "0" && isAgree != "0") {
+                        var receiveType= $('#receiveTypeBox>.optionAbout>.selectBtn:checked').siblings('.price').text()
+                        var showReceiveInfo= false;
+                        $('#page4>.orderInfo>.content>.orderItem>.receiveType').text(receiveType);
+                        if(receiveType == "自提") {
+                            showReceiveInfo= false;    
+                        }else if(receiveType == "邮寄") {
+                            showReceiveInfo= true;
+                        }
+                        // 判断page2是否需要显示收件地址信息框
+                        if(showReceiveInfo) {
+                            $('#page2>.receiveInfo').css('display','block')
+                        }else {
+                            $('#page2>.receiveInfo').css('display','none')
+                        }
+                    }
+                    $('#pageBox .stepPage').css('display','none');
+                    $('#pageBox .stepPage:eq('+pageIndex+')').css('display','block');
+                    $('.headerBar>ul>li:eq('+pageIndex+')').slice(0,pageIndex+1).find('.stepCont>.stepNum').css('display','none'); // 隐藏流程数字
+                    $('.headerBar>ul>li:eq('+pageIndex+')').slice(0,pageIndex+1).find('.stepCont>.succFlag').css('display','block'); // 显示当前完成状态标识
+                    pageIndex++;
+                }else if(pageIndex == 2) {
+                    var name= $('#page2>.baseInfo>.formItem>.name').val();
+                    var papers= $('#page2>.baseInfo>.formItem>.papers').val();
+                    var hospitalNum= $('#page2>.baseInfo>.formItem>.hospitalNum').val();
+                    var beginTime= $('#startDate').val(); // 入院时间
+                    var endTime= $('#endDate').val(); // 出院时间
+                    var papersType= $('#papersTypeBox>.papersType.checkedItem').text()
+                    // 邮寄需要补充收件信息
+                    var receiverName= $('#page2>.receiveInfo>.formItem>.receiverName').val();
+                    var receiverTel= $('#page2>.receiveInfo>.formItem>.receiverTel').val();
+                    var provinceAdd= $('#expressArea>dl>.areaText').text();  
+                    var infoAdd= $('#page2>.receiveInfo>.formItem>.receiverAdd').val(); //详细地址需要拼接上省市区
+                    var receiverAdd= provinceAdd+infoAdd;
+                    var isCheck= $('#page2>.receiveInfo').css('display') == "block"?true:false 
+
+                    $('#page4>.orderInfo>.content>.orderItem>.name').text(name);
+                    $('#page4>.orderInfo>.content>.orderItem>.papersType').text(papersType);
+                    $('#page4>.orderInfo>.content>.orderItem>.papersNum').text(papers);
+                    $('#page4>.orderInfo>.content>.orderItem>.hospitalNum').text(hospitalNum);
+                    $('#page4>.orderInfo>.content>.orderItem>.startTime').text(beginTime);
+                    $('#page4>.orderInfo>.content>.orderItem>.endTime').text(endTime);
+                    if(name == '') {
+                        layer.msg('请输入患者姓名');
+                        return;
+                    }
+                    if(papers == '') {
+                        layer.msg('请输入证件号');
+                        return;
+                    }
+                    if(hospitalNum == '') {
+                        layer.msg('请输入住院号');
+                        return;
+                    }
+                    if(endTime == '' || endTime === undefined) {
+                        layer.msg('请选择出院时间');
+                        return;
+                    }
+                    if(beginTime == '' || endTime === undefined) {
+                        $('#page4>.orderInfo>.content>.startTimeBox').css('display','none');
+                    }
+
+                    if(papersType == "身份证") {
+                        // 身份证类型--需要上传的3张图片
+                        var paitentsID_up= $('#page2>.baseInfo>.formItem>.fileBoxType1>.paitentsID_up').attr('src'); // 患者身份证正面
+                        var paitentsID_down= $('#page2>.baseInfo>.formItem>.fileBoxType1>.paitentsID_down').attr('src'); // 患者身份证反面 
+                        var pay_invoice= $('#page2>.baseInfo>.formItem>.fileBoxType1>.pay_invoice').attr('src');  // 出院结账发票
+                        if(paitentsID_up == '') {
+                            layer.msg('请上传患者身份证正面')
+                            return;
+                        }else if(paitentsID_down == '') {
+                            layer.msg('请上传患者身份证反面')
+                            return;
+                        }else if(pay_invoice == '') {
+                            layer.msg('请上传出院结账发票')
+                            return;
+                        }
+                        $('#page4>.orderInfo>.content>.uploadFile').css('display','none')
+                        $('#page4>.orderInfo>.content>.fileBoxType1').css('display','block')
+                        $('#page4>.orderInfo>.content>.fileBoxType1>.labContent>.paitentsID_up').attr('src',paitentsID_up);
+                        $('#page4>.orderInfo>.content>.fileBoxType1>.labContent>.paitentsID_down').attr('src',paitentsID_down);
+                        $('#page4>.orderInfo>.content>.fileBoxType1>.labContent>.pay_invoice').attr('src',pay_invoice);
+                    }else if(papersType == "身份证(代办)") {
+                        // 身份证代办类型--需要上传的6张图片
+                        var agentID_up= $('#page2>.baseInfo>.formItem>.fileBoxType2>.agentID_up').attr('src'); // 代办人身份证正面
+                        var agentID_down= $('#page2>.baseInfo>.formItem>.fileBoxType2>.agentID_down').attr('src'); // 代办人身份证反面 
+                        var agentID_hand= $('#page2>.baseInfo>.formItem>.fileBoxType2>.agentID_hand').attr('src');  // 代办人手持身份证正面
+                        var paitentsID_up= $('#page2>.baseInfo>.formItem>.fileBoxType2>.paitentsID_up').attr('src'); // 患者身份证正面
+                        var paitentsID_down= $('#page2>.baseInfo>.formItem>.fileBoxType2>.paitentsID_down').attr('src'); // 患者身份证反面 
+                        var permitText= $('#page2>.baseInfo>.formItem>.fileBoxType2>.permitText').attr('src');  // 授权委托书
+                        if(agentID_up == '') {
+                            layer.msg('请上传代办人身份证正面')
+                            return;
+                        }else if(agentID_down == '') {
+                            layer.msg('请上传代办人身份证反面')
+                            return;
+                        }else if(agentID_hand == '') {
+                            layer.msg('请上传代办人手持身份证正面')
+                            return;
+                        }else if(paitentsID_up == '') {
+                            layer.msg('请上传患者身份证正面')
+                            return;
+                        }else if(paitentsID_down == '') {
+                            layer.msg('请上传患者身份证反面')
+                            return;
+                        }else if(permitText == '') {
+                            layer.msg('请上传授权委托书')
+                            return;
+                        }
+
+                        $('#page4>.orderInfo>.content>.uploadFile').css('display','none')
+                        $('#page4>.orderInfo>.content>.fileBoxType2').css('display','block')
+                        $('#page4>.orderInfo>.content>.fileBoxType2>.labContent>.agentID_up').attr('src',agentID_up);
+                        $('#page4>.orderInfo>.content>.fileBoxType2>.labContent>.agentID_down').attr('src',agentID_down);
+                        $('#page4>.orderInfo>.content>.fileBoxType2>.labContent>.agentID_hand').attr('src',agentID_hand);
+                        $('#page4>.orderInfo>.content>.fileBoxType2>.labContent>.paitentsID_up').attr('src',paitentsID_up);
+                        $('#page4>.orderInfo>.content>.fileBoxType2>.labContent>.paitentsID_down').attr('src',paitentsID_down);
+                        $('#page4>.orderInfo>.content>.fileBoxType2>.labContent>.permitText').attr('src',permitText);
+                    }else if(papersType == "未成年(代办)") {
+                        // 未成年代办类型--需要上传的3张图片
+                        var houseBook_home= $('#page2>.baseInfo>.formItem>.fileBoxType3>.houseBook_home').attr('src'); // 户口本首页
+                        var guardianID_up= $('#page2>.baseInfo>.formItem>.fileBoxType3>.guardianID_up').attr('src'); // 监护人手持身份证正面 
+                        var pay_invoice= $('#page2>.baseInfo>.formItem>.fileBoxType3>.pay_invoice').attr('src');  // 出院结账发票
+                        if(houseBook_home == '') {
+                            layer.msg('请上传户口本首页')
+                            return;
+                        }else if(guardianID_up == '') {
+                            layer.msg('请上传监护人手持身份证正面')
+                            return;
+                        }else if(pay_invoice == '') {
+                            layer.msg('请上传出院结账发票')
+                            return;
+                        }
+                        $('#page4>.orderInfo>.content>.uploadFile').css('display','none')
+                        $('#page4>.orderInfo>.content>.fileBoxType3').css('display','block')
+                        $('#page4>.orderInfo>.content>.fileBoxType3>.labContent>.houseBook_home').attr('src',houseBook_home);
+                        $('#page4>.orderInfo>.content>.fileBoxType3>.labContent>.guardianID_up').attr('src',guardianID_up);
+                        $('#page4>.orderInfo>.content>.fileBoxType3>.labContent>.pay_invoice').attr('src',pay_invoice);
+                    }else if(papersType == "死亡(代办)") {
+                        // 死亡代办--需要上传的5张图片
+                        var death_prove= $('#page2>.baseInfo>.formItem>.fileBoxType4>.death_prove').attr('src'); // 死亡证明
+                        var relation_prove= $('#page2>.baseInfo>.formItem>.fileBoxType4>.relation_prove').attr('src'); // 代办人和患者关系证明 
+                        var agentID_hand= $('#page2>.baseInfo>.formItem>.fileBoxType4>.agentID_hand').attr('src');  // 代办人手持身份证
+                        var agentID_up= $('#page2>.baseInfo>.formItem>.fileBoxType4>.agentID_up').attr('src'); // 代办人身份证正面
+                        var agentID_down= $('#page2>.baseInfo>.formItem>.fileBoxType4>.agentID_down').attr('src'); // 代办人身份证反面
+                        if(death_prove == '') {
+                            layer.msg('请上传死亡证明')
+                            return;
+                        }else if(relation_prove == '') {
+                            layer.msg('请上传代办人和患者关系证明')
+                            return;
+                        }else if(agentID_hand == '') {
+                            layer.msg('请上传代办人手持身份证')
+                            return;
+                        }else if(agentID_up == '') {
+                            layer.msg('请上传代办人身份证正面')
+                            return;
+                        }else if(agentID_hand == '') {
+                            layer.msg('请上传代办人身份证反面')
+                            return;
+                        }
+                        $('#page4>.orderInfo>.content>.uploadFile').css('display','none')
+                        $('#page4>.orderInfo>.content>.fileBoxType4').css('display','block')
+                        $('#page4>.orderInfo>.content>.fileBoxType4>.labContent>.death_prove').attr('src',death_prove);
+                        $('#page4>.orderInfo>.content>.fileBoxType4>.labContent>.relation_prove').attr('src',relation_prove);
+                        $('#page4>.orderInfo>.content>.fileBoxType4>.labContent>.agentID_hand').attr('src',agentID_hand);
+                        $('#page4>.orderInfo>.content>.fileBoxType4>.labContent>.agentID_up').attr('src',agentID_up);
+                        $('#page4>.orderInfo>.content>.fileBoxType4>.labContent>.agentID_down').attr('src',agentID_down); 
+                    }
+
+                    if(isCheck) { // 判断是否要校验收件信息
+                        var addInfo= receiverAdd.replace(/\s/g, "")
+                            addInfo= addInfo.replace(/>/g,"")
+                        $('#page4>.receiveInfo').css('display','block');
+                        $('#page4>.receiveInfo>.content>.orderItem>.receiverName').text(receiverName);
+                        $('#page4>.receiveInfo>.content>.orderItem>.receiverTel').text(receiverTel);
+                        $('#page4>.receiveInfo>.content>.orderItem>.receiverAdd').text(addInfo);
+                        if(receiverName == '') {
+                            layer.msg('请输入收件人姓名');
+                            return;
+                        }
+                        if(receiverTel == '') {
+                            layer.msg('请输入收件人联系电话');
+                            return;
+                        }
+                        if(provinceAdd == '') {
+                            layer.msg('请选择收件省市区');
+                            return;
+                        }
+                        if(infoAdd == '') {
+                            layer.msg('请输入收件人详细地址');
+                            return;
+                        }
+                        
+                    }else {
+                        $('#page4>.receiveInfo').css('display','none');
+                    }
+
+                    $('#pageBox .stepPage').css('display','none');
+                    $('#pageBox .stepPage:eq('+pageIndex+')').css('display','block');
+                    $('.headerBar>ul>li:eq('+pageIndex+')').slice(0,pageIndex+1).find('.stepCont>.stepNum').css('display','none'); // 隐藏流程数字
+                    $('.headerBar>ul>li:eq('+pageIndex+')').slice(0,pageIndex+1).find('.stepCont>.succFlag').css('display','block'); // 显示当前完成状态标识
+                    pageIndex++;
+                }else if(pageIndex == "3") {
+                    var typeList= $('#useType>li.checkedItem')
+                    var amount= $('#page3>.baseInfo>.formItem>.amount').val();
+                    var addText= $('#page3>.baseInfo>.formItem>.remarkText').val();
+                    var isAgree= $('#page3>.userRule>input:checked').length;
+                    if(typeList.length == "0") {
+                        layer.msg('请选择复印用途');
+                        return;
+                    }
+                    if(amount == "") {
+                        layer.msg('请输入需要复印的数量');
+                        return;
+                    }
+                    if(isAgree == "0") {
+                        layer.msg('请勾选用户使用条款');
+                        return;
+                    }
+
+                   for (let i = 0; i < typeList.length; i++) {
+                       var type= $(typeList[i]).text()
+                       var typeItem= '<tr class="useItem">'+
+                                        '<td class="type">'+type+'</td>'+
+                                        '<td class="amount">'+'×' +amount+'</td>'+
+                                     '</tr>'
+                       $('#selectTypeBox').append(typeItem);
+                   }
+
+                    $('#page4>.orderInfo>.content>.orderItem>.addText').text(addText);
+                    $('#pageBox .stepPage').css('display','none');
+                    $('#pageBox .stepPage:eq('+pageIndex+')').css('display','block');
+                    $('.headerBar>ul>li:eq('+pageIndex+')').slice(0,pageIndex+1).find('.stepCont>.stepNum').css('display','none'); // 隐藏流程数字
+                    $('.headerBar>ul>li:eq('+pageIndex+')').slice(0,pageIndex+1).find('.stepCont>.succFlag').css('display','block'); // 显示当前完成状态标识
                     $('#nextBtn').css('dispay','none');
-                    $('.paymentBox>.submitPay').css('display','block');
+                    $('.paymentBox>.submitPay').css('display','block'); 
+                    pageIndex++;
+                }else if(pageIndex == 4) {
+                    // $('#nextBtn').css('dispay','none');
+                    // $('.paymentBox>.submitPay').css('display','block');
                 }
+
             }else {
                 layer.msg('功能开发中...业务办理请联系客服')
                 return;
@@ -599,6 +916,16 @@
             select:[2020,5,6],
             title:'入院时间'
         },function (data) {
+            var month= "";
+            var day= "";
+            if(data.month <10 ) {
+                month= "0"+data.month;
+            }
+            if(data.day < 10 ) {
+                day= "0"+data.day;
+            }
+            var beginTime= data.year+'-'+month+'-'+day
+            $('#startDate').val(beginTime); // 入院时间      
         });
 
         $("#startDate").focus(function(){
@@ -612,6 +939,16 @@
             select:[2020,5,6],
             title:'出院时间'
         },function (data) {
+            var month= "";
+            var day= "";
+            if(data.month <10 ) {
+                month= "0"+data.month;
+            }
+            if(data.day < 10 ) {
+                day= "0"+data.day;
+            }
+            var endTime= data.year+'-'+month+'-'+day
+            $('#endDate').val(endTime); // 出院时间 
         });
 
         $("#endDate").focus(function(){
@@ -621,7 +958,6 @@
         // page2选择证件类型
         $('.zoomList').on('click','li',function(e){
             var showIndex= $(this).index();
-            console.log(showIndex);
             $('#page2>.baseInfo>.formItem>.addTextBox>.addText').removeClass('show_addText');
             $('#page2>.baseInfo>.formItem>.addTextBox>.addText:eq('+showIndex+')').addClass('show_addText');
             if(showIndex == 0) {
@@ -642,10 +978,52 @@
         // 复印用途计数
         $('.spinnerExample').spinner({})
 
-
         // 选择复印用途
         $('#useType').on('click','li',function(e){
             $(this).toggleClass('checkedItem');
+        })
+
+        $('#payBtn').on('click',function(){
+            var parameter= {};
+            var imgList= [];
+            var hospitalName= $('#page4>.orderInfo>.content>.orderItem>.hospitalName').text();
+            var name= $('#page4>.orderInfo>.content>.orderItem>.name').text();
+            var papersType= $('#page4>.orderInfo>.content>.orderItem>.papersType').text();
+            var papersNum= $('#page4>.orderInfo>.content>.orderItem>.papersNum').text();
+            var hospitalNum= $('#page4>.orderInfo>.content>.orderItem>.hospitalNum').text();
+            var startTime= $('#page4>.orderInfo>.content>.orderItem>.startTime').text();
+            var endTime= $('#page4>.orderInfo>.content>.orderItem>.endTime').text();
+            var receiveType= $('#page4>.orderInfo>.content>.orderItem>.receiveType').text();
+            var addText= $('#page4>.orderInfo>.content>.orderItem>.addText').text();
+            var receiverName= $('#page4>.receiveInfo>.content>.orderItem>.receiverName').text();
+            var receiverTel= $('#page4>.receiveInfo>.content>.orderItem>.receiverTel').text();
+            var addInfo= $('#page4>.receiveInfo>.content>.orderItem>.receiverAdd').text();
+            if(papersType == "身份证") {
+                var paitentsID_up= $('#page4>.orderInfo>.content>.fileBoxType1>.labContent>.paitentsID_up').attr('src');
+                var paitentsID_down= $('#page4>.orderInfo>.content>.fileBoxType1>.labContent>.paitentsID_down').attr('src');
+                var pay_invoice= $('#page4>.orderInfo>.content>.fileBoxType1>.labContent>.pay_invoice').attr('src');
+                imgList= [paitentsID_up,paitentsID_down,pay_invoice];
+            }else if(papersType == "身份证(代办)") {
+                var agentID_up= $('#page4>.orderInfo>.content>.fileBoxType2>.labContent>.agentID_up').attr('src');
+                var agentID_down= $('#page4>.orderInfo>.content>.fileBoxType2>.labContent>.agentID_down').attr('src');
+                var agentID_hand= $('#page4>.orderInfo>.content>.fileBoxType2>.labContent>.agentID_hand').attr('src');
+                var paitentsID_up= $('#page4>.orderInfo>.content>.fileBoxType2>.labContent>.paitentsID_up').attr('src');
+                var paitentsID_down= $('#page4>.orderInfo>.content>.fileBoxType2>.labContent>.paitentsID_down').attr('src');
+                var permitText= $('#page4>.orderInfo>.content>.fileBoxType2>.labContent>.permitText').attr('src');
+                imgList= [agentID_up,agentID_down,agentID_hand,paitentsID_up,paitentsID_down,permitText];
+            }else if(papersType == "未成年(代办)") {
+                var houseBook_home= $('#page4>.orderInfo>.content>.fileBoxType3>.labContent>.houseBook_home').attr('src');
+                var guardianID_up= $('#page4>.orderInfo>.content>.fileBoxType3>.labContent>.guardianID_up').attr('src');
+                var pay_invoice= $('#page4>.orderInfo>.content>.fileBoxType3>.labContent>.pay_invoice').attr('src');
+                imgList= [houseBook_home,guardianID_up,pay_invoice];
+            }else if(papersType == "死亡(代办)") {
+                var death_prove= $('#page4>.orderInfo>.content>.fileBoxType4>.labContent>.death_prove').attr('src');
+                var relation_prove= $('#page4>.orderInfo>.content>.fileBoxType4>.labContent>.relation_prove').attr('src');
+                var agentID_hand= $('#page4>.orderInfo>.content>.fileBoxType4>.labContent>.agentID_hand').attr('src');
+                var agentID_up= $('#page4>.orderInfo>.content>.fileBoxType4>.labContent>.agentID_up').attr('src');
+                var agentID_down= $('#page4>.orderInfo>.content>.fileBoxType4>.labContent>.agentID_down').attr('src'); 
+                imgList= [death_prove,relation_prove,agentID_hand,agentID_up,agentID_down];
+            }
         })
     })
 </script>
