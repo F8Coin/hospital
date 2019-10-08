@@ -23,7 +23,7 @@ function getCode() {
         clearId= setInterval(timeDown,1000);
         $.ajax({
             type: 'post',
-            url: baseUrl+'/api/sms/getCode',
+            url: baseUrl+'/api/common/smsCode',
             data: {"phone":mobile},
             success: function(res) {
                 if(res.code == '500') {

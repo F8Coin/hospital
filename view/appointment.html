@@ -80,7 +80,7 @@
                                     <span class="text">方案2</span>
                                 </p>
                                 <p class="price">邮寄</p>
-                               <input class="selectBtn" type="radio" id="right" name="plan">
+                               <input class="selectBtn" checked type="radio" id="right" name="plan">
                             </label>
                         </div>
                     </div>
@@ -139,6 +139,15 @@
                         <p class="labTitle"><span class="isRequired">*</span>出院时间</p>
                         <input id="endDate" class="placeholderText" type="text" placeholder="请选择出院时间">
                     </div>
+                    <!-- <div class="formItem phone">
+                        <p class="itemTitle labTitle"><span class="isRequired">*</span>预约人手机号码</p>
+                        <input type="text" class="placeholderText itemInput mobile" placeholder="请输入预约人手机号码">
+                    </div>
+                    <div class="formItem code" style="position:relative">
+                        <p class="itemTitle labTitle"><span class="isRequired">*</span>验证码</p>
+                        <input type="text" class="placeholderText code"  placeholder="请输入验证码">
+                        <button class="getCodeBtn" onclick= getCode()>获取验证码</button>
+                    </div> -->
                     <div class="formItem">
                         <p class="labTitle"><span class="isRequired">*</span>证件类型</p>
                         <ul class="zoomList" id="papersTypeBox">
@@ -592,7 +601,7 @@
     $(function(){
         var baseUrl= 'http://49.235.145.4:81';
         var hospitalId= getUrlParam('hospitalId')?getUrlParam('hospitalId'):"1"; // 没有传入id默认显示id为1的医院
-
+        var payPrice= '0';
         // 获取医院信息方法
         function hospitalInfo(id) {
             $.ajax({
@@ -605,6 +614,7 @@
                     $('.customInfo .customBox .title>.name').text(res.sender);
                     $('.customInfo .customBox .tel>.text').text(res.senderMobile);
                     $('#page4>.orderInfo>.content>.orderItem>.hospitalName').text(res.name);
+                    payPrice= res.prePay;
                 }
             })
         }
@@ -850,6 +860,7 @@
                     var amount= $('#page3>.baseInfo>.formItem>.amount').val();
                     var addText= $('#page3>.baseInfo>.formItem>.remarkText').val();
                     var isAgree= $('#page3>.userRule>input:checked').length;
+                    $('.paymentBox>.payInfo>.payAmount').text(payPrice*amount);
                     if(typeList.length == "0") {
                         layer.msg('请选择复印用途');
                         return;
@@ -998,6 +1009,7 @@
             var receiverName= $('#page4>.receiveInfo>.content>.orderItem>.receiverName').text();
             var receiverTel= $('#page4>.receiveInfo>.content>.orderItem>.receiverTel').text();
             var addInfo= $('#page4>.receiveInfo>.content>.orderItem>.receiverAdd').text();
+            var payMoney= $('.paymentBox>.payInfo>.payAmount').text();
             if(papersType == "身份证") {
                 var paitentsID_up= $('#page4>.orderInfo>.content>.fileBoxType1>.labContent>.paitentsID_up').attr('src');
                 var paitentsID_down= $('#page4>.orderInfo>.content>.fileBoxType1>.labContent>.paitentsID_down').attr('src');
