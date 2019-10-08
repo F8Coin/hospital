@@ -409,7 +409,8 @@
     vertical-align: middle;
 }
 
-.baseInfo>.hospitalName {
+.baseInfo>.hospitalName,
+.baseInfo>.patientsName {
     font-size: 1.125rem;
     vertical-align: middle;
     margin-right: .5rem;

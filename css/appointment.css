@@ -196,7 +196,8 @@
 
 /* -------医院列表信息页面------- */
 
-.hospitalContainer>.containerInner {
+.hospitalContainer>.containerInner,
+.applicationContainer>.containerInner {
     top: 9.75rem;
 }
 
@@ -240,12 +241,14 @@
     font-size: .875rem;
 }
 
-.hospitalList>.hospitalInfo>.typeBox>.recordType {
+.hospitalList>.hospitalInfo>.typeBox>.recordType,
+.orderList>.orderInfo>.typeBox>.recordType {
     border: 1px solid #836FFF;
     padding: .375rem;
     color: #836FFF
 }
-.hospitalList>.hospitalInfo>.typeBox>.sendType {
+.hospitalList>.hospitalInfo>.typeBox>.sendType, 
+.orderList>.orderInfo>.typeBox>.sendType{
     border: 1px solid chocolate;
     padding: .375rem;
     color: chocolate
@@ -257,5 +260,35 @@
 
 .hospitalList>.hospitalInfo {
     display: block;
+}
+
+/* -------我的申请信息页面------- */
+.applicationContainer>.containerInner>.orderList>.orderInfo {
+    display: block;
+    width: 100%;
+}
+
+.orderList>.orderInfo>.typeBox {
+    text-align: right;
+}
+
+.orderList>.orderInfo>.typeBox>.type {
+    margin-left: .375rem;
+    border-radius: .25rem;
+    font-size: .875rem;
+}
+
+.applicationContainer>.containerInner>.orderList>.baseInfo>.stateFlag {
+    /* width: 3rem;
+    height: 3rem;
+    border-radius: 50%; */
+    width: 3.75rem;
+    height: 3.75rem;
+    margin-right: .375rem;
+    vertical-align: middle;
+}
+
+.applicationContainer>.containerInner>.orderList>.baseInfo>.patientsName {
+    margin-left: .75rem;
 }
 
