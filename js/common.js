@@ -113,16 +113,6 @@ function createOrder(orderPar) {
 } 
 
 
-/* -------------- 微信支付 ----------------- */
-// function weChatPay(orderId,targetUrl) {
-//     window.location.href=  baseUrl+'/api/pay/create?orderId='+orderId+'&returnUrl='+targetUrl+'&token='+JSON.parse(localStorage.getItem('loginData')).token
-// }
-
-/* -------------- 微信授权 ----------------- */
-// window.location.href=  baseUrl+'/api/auth/mpAuth?userId='+res.data.userId+'&returnUrl=http://judiaowang.cn/app/index.html'
-
-
-
 
 // function uploadFile(inputEle,containerEle){
 // 	var file=inputEle[0].files[0];
