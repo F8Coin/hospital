@@ -93,6 +93,37 @@ $('.zoomList').on('click','li',function(e){
 })
 
 
+/* -------------- 提交订单 ----------------- */
+function createOrder(orderPar) {
+    $.ajax({
+        url: baseUrl+'/api/appointment/add',
+        type: 'POST',
+        data: orderPar,
+        success: function(res){
+            if(res.code == 0) {
+                alert('订单提交成功')
+            }else {
+                layer.msg(res.msg);
+            }
+        },
+        error: function(res) {
+            layer.msg(res.msg);
+        }
+    })
+} 
+
+
+/* -------------- 微信支付 ----------------- */
+// function weChatPay(orderId,targetUrl) {
+//     window.location.href=  baseUrl+'/api/pay/create?orderId='+orderId+'&returnUrl='+targetUrl+'&token='+JSON.parse(localStorage.getItem('loginData')).token
+// }
+
+/* -------------- 微信授权 ----------------- */
+// window.location.href=  baseUrl+'/api/auth/mpAuth?userId='+res.data.userId+'&returnUrl=http://judiaowang.cn/app/index.html'
+
+
+
+
 // function uploadFile(inputEle,containerEle){
 // 	var file=inputEle[0].files[0];
 // 	if (file.size > 10 * 1024 * 1024) {

@@ -598,10 +598,15 @@
 <script src="../lib/area/jquery.area.js"></script>
 <script src="../js/common.js"></script>
 <script>
+   
     $(function(){
         var baseUrl= 'http://49.235.145.4:81';
         var hospitalId= getUrlParam('hospitalId')?getUrlParam('hospitalId'):"1"; // 没有传入id默认显示id为1的医院
-        var payPrice= '0';
+        var payPrice= 0;
+        var userTypeList= [];
+        var copyTotal= 0;
+        var provinceAddText= '';
+        var infoAddText= '';
         // 获取医院信息方法
         function hospitalInfo(id) {
             $.ajax({
@@ -619,7 +624,7 @@
             })
         }
         
-        hospitalInfo(hospitalId) 
+        hospitalInfo(hospitalId); 
 
         // 获取复印用途列表
         function getTypeList(id) {
@@ -684,7 +689,9 @@
                     var receiverName= $('#page2>.receiveInfo>.formItem>.receiverName').val();
                     var receiverTel= $('#page2>.receiveInfo>.formItem>.receiverTel').val();
                     var provinceAdd= $('#expressArea>dl>.areaText').text();  
+                    provinceAddText= provinceAdd.replace(/>/g,"").replace(/\s/g, "");
                     var infoAdd= $('#page2>.receiveInfo>.formItem>.receiverAdd').val(); //详细地址需要拼接上省市区
+                    infoAddText= infoAdd;
                     var receiverAdd= provinceAdd+infoAdd;
                     var isCheck= $('#page2>.receiveInfo').css('display') == "block"?true:false 
 
@@ -860,6 +867,7 @@
                     var amount= $('#page3>.baseInfo>.formItem>.amount').val();
                     var addText= $('#page3>.baseInfo>.formItem>.remarkText').val();
                     var isAgree= $('#page3>.userRule>input:checked').length;
+                    copyTotal= amount;
                     $('.paymentBox>.payInfo>.payAmount').text(payPrice*amount);
                     if(typeList.length == "0") {
                         layer.msg('请选择复印用途');
@@ -881,6 +889,7 @@
                                         '<td class="amount">'+'×' +amount+'</td>'+
                                      '</tr>'
                        $('#selectTypeBox').append(typeItem);
+                       userTypeList.push(type);
                    }
 
                     $('#page4>.orderInfo>.content>.orderItem>.addText').text(addText);
@@ -892,8 +901,7 @@
                     $('.paymentBox>.submitPay').css('display','block'); 
                     pageIndex++;
                 }else if(pageIndex == 4) {
-                    // $('#nextBtn').css('dispay','none');
-                    // $('.paymentBox>.submitPay').css('display','block');
+                    
                 }
 
             }else {
@@ -987,7 +995,7 @@
         })
        
         // 复印用途计数
-        $('.spinnerExample').spinner({})
+        // $('.spinnerExample').spinner({})
 
         // 选择复印用途
         $('#useType').on('click','li',function(e){
@@ -997,6 +1005,7 @@
         $('#payBtn').on('click',function(){
             var parameter= {};
             var imgList= [];
+            userTypeList= userTypeList.join();
             var hospitalName= $('#page4>.orderInfo>.content>.orderItem>.hospitalName').text();
             var name= $('#page4>.orderInfo>.content>.orderItem>.name').text();
             var papersType= $('#page4>.orderInfo>.content>.orderItem>.papersType').text();
@@ -1009,12 +1018,19 @@
             var receiverName= $('#page4>.receiveInfo>.content>.orderItem>.receiverName').text();
             var receiverTel= $('#page4>.receiveInfo>.content>.orderItem>.receiverTel').text();
             var addInfo= $('#page4>.receiveInfo>.content>.orderItem>.receiverAdd').text();
-            var payMoney= $('.paymentBox>.payInfo>.payAmount').text();
+            var payMoney= Number($('.paymentBox>.payInfo>.payAmount').text());
+            if(receiveType == "自提") {
+                receiveType= "01"
+            }else if(receiveType == "邮寄") {
+                receiveType= "02"
+            }
+
             if(papersType == "身份证") {
                 var paitentsID_up= $('#page4>.orderInfo>.content>.fileBoxType1>.labContent>.paitentsID_up').attr('src');
                 var paitentsID_down= $('#page4>.orderInfo>.content>.fileBoxType1>.labContent>.paitentsID_down').attr('src');
                 var pay_invoice= $('#page4>.orderInfo>.content>.fileBoxType1>.labContent>.pay_invoice').attr('src');
-                imgList= [paitentsID_up,paitentsID_down,pay_invoice];
+                papersType= "01";
+                imgList= [paitentsID_up,paitentsID_down,pay_invoice].join();
             }else if(papersType == "身份证(代办)") {
                 var agentID_up= $('#page4>.orderInfo>.content>.fileBoxType2>.labContent>.agentID_up').attr('src');
                 var agentID_down= $('#page4>.orderInfo>.content>.fileBoxType2>.labContent>.agentID_down').attr('src');
@@ -1022,20 +1038,63 @@
                 var paitentsID_up= $('#page4>.orderInfo>.content>.fileBoxType2>.labContent>.paitentsID_up').attr('src');
                 var paitentsID_down= $('#page4>.orderInfo>.content>.fileBoxType2>.labContent>.paitentsID_down').attr('src');
                 var permitText= $('#page4>.orderInfo>.content>.fileBoxType2>.labContent>.permitText').attr('src');
-                imgList= [agentID_up,agentID_down,agentID_hand,paitentsID_up,paitentsID_down,permitText];
+                papersType= "02";
+                imgList= [agentID_up,agentID_down,agentID_hand,paitentsID_up,paitentsID_down,permitText].join();
             }else if(papersType == "未成年(代办)") {
                 var houseBook_home= $('#page4>.orderInfo>.content>.fileBoxType3>.labContent>.houseBook_home').attr('src');
                 var guardianID_up= $('#page4>.orderInfo>.content>.fileBoxType3>.labContent>.guardianID_up').attr('src');
                 var pay_invoice= $('#page4>.orderInfo>.content>.fileBoxType3>.labContent>.pay_invoice').attr('src');
-                imgList= [houseBook_home,guardianID_up,pay_invoice];
+                papersType= "03";
+                imgList= [houseBook_home,guardianID_up,pay_invoice].join();
             }else if(papersType == "死亡(代办)") {
                 var death_prove= $('#page4>.orderInfo>.content>.fileBoxType4>.labContent>.death_prove').attr('src');
                 var relation_prove= $('#page4>.orderInfo>.content>.fileBoxType4>.labContent>.relation_prove').attr('src');
                 var agentID_hand= $('#page4>.orderInfo>.content>.fileBoxType4>.labContent>.agentID_hand').attr('src');
                 var agentID_up= $('#page4>.orderInfo>.content>.fileBoxType4>.labContent>.agentID_up').attr('src');
-                var agentID_down= $('#page4>.orderInfo>.content>.fileBoxType4>.labContent>.agentID_down').attr('src'); 
-                imgList= [death_prove,relation_prove,agentID_hand,agentID_up,agentID_down];
+                var agentID_down= $('#page4>.orderInfo>.content>.fileBoxType4>.labContent>.agentID_down').attr('src');
+                papersType= "04"; 
+                imgList= [death_prove,relation_prove,agentID_hand,agentID_up,agentID_down].join();
             }
+
+            parameter= {
+                address:  infoAddText, //详细地址
+                appointmentType: papersType, //证件类型-必填
+                areaCity: provinceAddText,  // 省市区
+                copyAmount: payMoney, // 复印费用-必填
+                // createBy: "",
+                // createTime: "",
+                cyDate: endTime, // 出院时间必填
+                deliveryType: receiveType, // 获取病例方式-必填
+                filePaths: imgList, // 上传图片-必填
+                fprn: hospitalNum, // 住院号-必填
+                hospitalCode: hospitalId, // 医院ID-必填
+                // mailAmount: "", // 快递费
+                // mailCompany: "", // 快递公司 EMS-01 顺丰-02
+                // mailNo: "", // 快递单号
+                note: addText, // 患者描述
+                patientCard: papersNum, //患者证件号码
+                patientName: name, // 患者姓名
+                // payAmount: "", // 支付费用
+                // payStatus: "", // 支付状态
+                // payTime: "", // 付款时间
+                printContents: userTypeList,// 复印用途-必填
+                printNum: copyTotal, // 复印数量-必填
+                receiverMobile: receiverTel, //收件人手机 
+                receiverName: receiverName, //收件人姓名
+                // refundAmount: "", // 退款金额 
+                // refundTime: "", // 退款时间
+                // refuseReason: "", // 拒绝原因
+                // remark: "",
+                ryDate: startTime, // 入院时间
+                // searchValue: "",
+                // status: "", // 订单状态 
+                // updateBy: "",
+                // updateTime: "",
+                wxId: '123456', // 微信OPENID-必填
+                yyMobile: '18603059551', // 预约人手机号码-必填
+            }
+
+            createOrder(parameter); // 创建订单
         })
     })
 </script>
