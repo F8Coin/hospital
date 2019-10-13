@@ -417,9 +417,7 @@
 }
 
 .baseInfo>.more {
-
-    display: block;
-    text-align: right;
+    float: right;
     display: none;
 }
 
