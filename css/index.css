@@ -31,8 +31,9 @@
     text-align: center;
 }
 
-.containerInner .footerBox .applyBtn {
-    width: 12.5rem;
+.containerInner .footerBox .applyBtn,
+.containerInner .footerBox .myApply {
+    width: 8.75rem;
     height: 3.75rem;
     line-height: 3.75rem;
     text-align: center;
@@ -42,8 +43,16 @@
     font-size: 1.5rem;
     border: 1px solid #e7e7e7;
     border-radius: .375rem;
-    left: 50%;
-    transform: translateX(-50%);
+    /* left: 50%;
+    transform: translateX(-50%); */
+}
+
+.containerInner .footerBox .applyBtn {
+    left: 10%;
+}
+
+.containerInner .footerBox .myApply {
+    right: 10%;
 }
 
 

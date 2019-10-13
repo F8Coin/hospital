@@ -1,4 +1,4 @@
-var baseUrl= 'http://49.235.145.4:81';
+var baseUrl= 'http://49.235.145.4';
 // 获取url中传递的参数
 function getUrlParam(name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
@@ -101,7 +101,8 @@ function createOrder(orderPar) {
         data: orderPar,
         success: function(res){
             if(res.code == 0) {
-                alert('订单提交成功')
+                // alert('订单提交成功')
+                console.log('订单提交成功')
             }else {
                 layer.msg(res.msg);
             }

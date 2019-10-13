@@ -420,6 +420,7 @@
 
     display: block;
     text-align: right;
+    display: none;
 }
 
 /* 获取短信验证码 */

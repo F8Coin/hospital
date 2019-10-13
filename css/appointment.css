@@ -263,6 +263,14 @@
 }
 
 /* -------我的申请信息页面------- */
+.applicationContainer>.headerBar>.title {
+    font-size: 1.875rem;
+    line-height: 7.5rem;
+    color: #ffffff;
+    text-align: center;
+    letter-spacing: .125rem;
+}
+
 .applicationContainer>.containerInner>.orderList>.orderInfo {
     display: block;
     width: 100%;

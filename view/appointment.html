@@ -72,17 +72,26 @@
                                 <p class="flag">
                                     <span class="text">方案1</span>
                                 </p>
-                                <p class="price">自提</p>
-                                <input class="selectBtn" type="radio" id="left" name="plan">
+                                <p class="price">邮寄</p>
+                                <input class="selectBtn" checked type="radio" id="left" name="plan">
                             </label>
                             <label for="right" class="right fr optionAbout">
                                 <p class="flag">
                                     <span class="text">方案2</span>
                                 </p>
-                                <p class="price">邮寄</p>
-                               <input class="selectBtn" checked type="radio" id="right" name="plan">
+                                <p class="price">自提</p>
+                               <input class="selectBtn" type="radio" id="right" name="plan">
                             </label>
                         </div>
+                    </div>
+                    <div class="formItem" id="bookTel">
+                        <p class="itemTitle labTitle"><span class="isRequired">*</span>预约人手机号码</p>
+                        <input type="text" class="placeholderText mobile" placeholder="请输入预约人手机号码">
+                    </div>
+                    <div class="formItem code" style="position:relative" id="bookCode">
+                        <p class="itemTitle labTitle"><span class="isRequired">*</span>验证码</p>
+                        <input type="text" class="placeholderText codeText"  placeholder="请输入验证码">
+                        <button class="getCodeBtn" onclick= getCode()>获取验证码</button>
                     </div>
                 </div>
                 <div class="customInfo">
@@ -315,7 +324,7 @@
                 <div class="baseInfo">
                     <p class="title">复印内容</p>
                     <div class="formItem">
-                        <p class="labTitle"><span class="isRequired">*</span>&nbsp;选择用途</p>
+                        <p class="labTitle"><span class="isRequired">*</span>&nbsp;选择复印内容</p>
                         <!-- <table class="table useTable">
                             <thead>
                                 <tr>
@@ -401,6 +410,10 @@
                         <p class="orderItem">
                             <span class="labTitle">获取病历方式<span class="colon">:</span></span>
                             <span class="labContent receiveType"></span>
+                        </p>   
+                        <p class="orderItem">
+                            <span class="labTitle">预约人手机号码<span class="colon">:</span></span>
+                            <span class="labContent bookTel"></span>
                         </p>   
                         <p class="orderItem">
                             <span class="labTitle">患者留言<span class="colon">:</span></span>
@@ -600,20 +613,30 @@
 <script>
    
     $(function(){
-        var baseUrl= 'http://49.235.145.4:81';
+        var baseUrl= 'http://49.235.145.4';
         var hospitalId= getUrlParam('hospitalId')?getUrlParam('hospitalId'):"1"; // 没有传入id默认显示id为1的医院
         var payPrice= 0;
         var userTypeList= [];
         var copyTotal= 0;
         var provinceAddText= '';
         var infoAddText= '';
+        // 获取用户openID
+        // $.ajax({
+        //     url: 'http://yy.zgbafy.com/api/wx/getOpenId',
+        //     type: 'get',
+        //     success: function (res) { 
+        //         console.log(res);
+        //      }
+        // })
+        // window.location.href = 'http://yy.zgbafy.com/api/wx/getOpenId';
+
         // 获取医院信息方法
         function hospitalInfo(id) {
             $.ajax({
                 url: baseUrl+'/api/hospital/'+id,
                 type: 'GET',
                 success: function(res){
-                    $('.hospitalInfo .hospitalIcon').attr('src','http://49.235.145.4:81'+res.logo);
+                    $('.hospitalInfo .hospitalIcon').attr('src','http://49.235.145.4'+res.logo);
                     $('.hospitalInfo .hospitalName').text(res.name);
                     $('#rulesText>.tipBox>.tipText').text(res.notice);
                     $('.customInfo .customBox .title>.name').text(res.sender);
@@ -624,7 +647,10 @@
             })
         }
         
-        hospitalInfo(hospitalId); 
+        hospitalInfo(hospitalId);
+        if(hospitalId == "999") {
+            $('.baseInfo>.more').css('display','block');
+        } 
 
         // 获取复印用途列表
         function getTypeList(id) {
@@ -658,9 +684,12 @@
                         return;
                     }
                     if(isSelect != "0" && isAgree != "0") {
-                        var receiveType= $('#receiveTypeBox>.optionAbout>.selectBtn:checked').siblings('.price').text()
+                        var receiveType= $('#receiveTypeBox>.optionAbout>.selectBtn:checked').siblings('.price').text();
+                        var bookTel= $('#bookTel>.mobile').val();
+                        var bookTel= $('#bookCode>.codeText').val();
                         var showReceiveInfo= false;
                         $('#page4>.orderInfo>.content>.orderItem>.receiveType').text(receiveType);
+                        $('#page4>.orderInfo>.content>.orderItem>.bookTel').text(bookTel);
                         if(receiveType == "自提") {
                             showReceiveInfo= false;    
                         }else if(receiveType == "邮寄") {
@@ -868,9 +897,16 @@
                     var addText= $('#page3>.baseInfo>.formItem>.remarkText').val();
                     var isAgree= $('#page3>.userRule>input:checked').length;
                     copyTotal= amount;
-                    $('.paymentBox>.payInfo>.payAmount').text(payPrice*amount);
+                    var receiveType= $('#receiveTypeBox>.optionAbout>.selectBtn:checked').siblings('.price').text()
+                    if(receiveType == "自提") {
+                        $('.paymentBox>.payInfo>.payAmount').text(payPrice*amount);
+                    }else if(receiveType == "邮寄") {
+                        $('.paymentBox>.payInfo>.payAmount').text(payPrice*amount+20);
+                    }
+
+
                     if(typeList.length == "0") {
-                        layer.msg('请选择复印用途');
+                        layer.msg('请选择复印内容');
                         return;
                     }
                     if(amount == "") {
@@ -910,7 +946,6 @@
             }
         })
 
-        // 提交支付
 
         // 医院公告内容弹窗
         $('.agreeRule').on('click','.ruleAbout',function(){
@@ -1002,6 +1037,8 @@
             $(this).toggleClass('checkedItem');
         })
 
+
+        // 提交订单并支付
         $('#payBtn').on('click',function(){
             var parameter= {};
             var imgList= [];
@@ -1019,6 +1056,9 @@
             var receiverTel= $('#page4>.receiveInfo>.content>.orderItem>.receiverTel').text();
             var addInfo= $('#page4>.receiveInfo>.content>.orderItem>.receiverAdd').text();
             var payMoney= Number($('.paymentBox>.payInfo>.payAmount').text());
+            var bookTel= $('#page4>.orderInfo>.content>.orderItem>.bookTel').text();
+            var bookCode= $('#bookTel>.bookText').val(); 
+
             if(receiveType == "自提") {
                 receiveType= "01"
             }else if(receiveType == "邮寄") {
@@ -1091,7 +1131,7 @@
                 // updateBy: "",
                 // updateTime: "",
                 wxId: '123456', // 微信OPENID-必填
-                yyMobile: '18603059551', // 预约人手机号码-必填
+                yyMobile: bookTel, // 预约人手机号码-必填
             }
 
             createOrder(parameter); // 创建订单
