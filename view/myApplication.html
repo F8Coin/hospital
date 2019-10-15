@@ -42,7 +42,7 @@
                         var payStatus;
                         var appointmentType; 
                         var createDate= new Date(res[i].createTime)
-                        createDate= createDate.getFullYear()+'-'+createDate.getMonth()+'-'+createDate.getDate();
+                        createDate= createDate.getFullYear()+'-'+(createDate.getMonth()>10?createDate.getMonth():"0"+createDate.getMonth())+'-'+(createDate.getDate()>10?createDate.getDate():"0"+createDate.getDate());
                         if(res[i].status == "01") {
                             checkStatus= "待审核";
                         }else if(res[i].status == "02") {
@@ -60,13 +60,13 @@
                         }
                         // 3.0 获取方式
                         if(res[i].appointmentType == "01") {
-                            appointmentType= "邮寄";
-                        }else if(res[i].appointmentType == "02") {
                             appointmentType= "自提";
+                        }else if(res[i].appointmentType == "02") {
+                            appointmentType= "邮寄";
                         }else if(res[i].appointmentType == "03") {
                             appointmentType= "物流查询";
                         }
-                        var orderItem= '<a class="baseInfo orderInfo" href="./appointment.html?pageIndex=4&ids='+res[i].id+'">'+
+                        var orderItem= '<a class="baseInfo orderInfo" href="./appointment.html?pageIndex=4&expressType='+res[i].appointmentType+'&ids='+res[i].id+'">'+
                                             '<span class="stateBox">'+
                                                 '<img src="../img/userIcon03.jpg" alt="" class="stateFlag"><br>'+
                                                 '<span class="stateText succState">'+checkStatus+'</span>'+
@@ -83,21 +83,6 @@
                     }
                 } 
             })
-        }
-
-        /* -------------- 物流查询 ----------------- */ 
-        function getExpressInfo(id) {
-            $.ajax({
-                url: baseUrl+'/api/common/searchwuliu?id='+id,
-                type: 'post',
-                success: function(res) {
-                    if(res.code == 0) {
-                        // 显示物流详情信息
-                    }else {
-                        layer.msg(res.msg);
-                    }
-                }
-            })       
         }
 
         

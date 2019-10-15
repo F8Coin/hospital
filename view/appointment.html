@@ -376,6 +376,15 @@
                 </div>
             </div>
             <div id="page4" class="stepPage" style="display: none">
+                <div class="orderInfo expressInfoBox">
+                    <p class="title">物流信息</p><br>
+                    <div class="content clearfix">
+                        <p class="orderItem" id="expressTextList">
+                            <span class="labTitle"><span class="expressType"></span><span class="colon">:</span></span>
+                        </p>
+                       
+                    </div>
+                </div>
                 <div class="orderInfo">
                     <p class="title">申请信息</p><br>
                     <div class="content clearfix">
@@ -415,7 +424,7 @@
                             <span class="labTitle">预约人手机号码<span class="colon">:</span></span>
                             <span class="labContent bookTel"></span>
                         </p>   
-                        <p class="orderItem">
+                        <p class="orderItem addTextBox">
                             <span class="labTitle">患者留言<span class="colon">:</span></span>
                             <span class="labContent addText"></span>
                         </p>   
@@ -618,6 +627,7 @@
         var openId= getUrlParam('openid'); // 获取用户openid
         var ids= getUrlParam('ids'); // 获取用户组件id
         var pageIndex= getUrlParam('pageIndex'); // 预约列表里传递过来的
+        var expressType= getUrlParam('expressType'); // 预约列表里传递过来的
         var payPrice= 0;
         var userTypeList= [];
         var copyTotal= 0;
@@ -668,11 +678,14 @@
             $('.headerBar>ul>li').find('.stepCont>.stepNum').css('display','none'); // 隐藏流程数字
             $('.headerBar>ul>li').find('.stepCont>.succFlag').css('display','block'); // 显示当前完成状态标识
             $('#nextBtn').css('dispay','none');
-            $('.paymentBox>.submitPay').css('display','block'); 
-
-            applicationInfo(ids) // 根据id查询详情
+            applicationInfo(ids); // 根据id查询详情
         }else {
             pageIndex= 1;
+        }
+
+        if(expressType == "03") {
+            $('#page4>.expressInfoBox').css('display','block');
+            getExpressInfo(ids);  // 根据id查询物流
         }
         $('#nextBtn').on('click',function(){
             if(pageIndex<4) {
@@ -750,7 +763,7 @@
                         layer.msg('请选择出院时间');
                         return;
                     }
-                    if(beginTime == '' || endTime === undefined) {
+                    if(beginTime == '' || beginTime === undefined) {
                         $('#page4>.orderInfo>.content>.startTimeBox').css('display','none');
                     }
 
@@ -932,7 +945,11 @@
                        userTypeList.push(type);
                    }
 
-                    $('#page4>.orderInfo>.content>.orderItem>.addText').text(addText);
+                   if(addText == '' || addText == "undefined" || addText == "null") {
+                        $('#page4>.orderInfo>.content>.addTextBox').css('display','none');                
+                    }else {
+                        $('#page4>.orderInfo>.content>.orderItem>.addText').text(addText);
+                    }
                     $('#pageBox .stepPage').css('display','none');
                     $('#pageBox .stepPage:eq('+pageIndex+')').css('display','block');
                     $('.headerBar>ul>li:eq('+pageIndex+')').slice(0,pageIndex+1).find('.stepCont>.stepNum').css('display','none'); // 隐藏流程数字

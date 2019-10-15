@@ -24,7 +24,7 @@ function getCode() {
         $.ajax({
             type: 'post',
             url: baseUrl+'/api/common/smsCode',
-            data: {"phone":mobile},
+            data: {"mobile":mobile},
             success: function(res) {
                 if(res.code == '500') {
                     layer.msg(res.msg);
@@ -102,8 +102,8 @@ function createOrder(orderPar) {
         success: function(res){
             if(res.code == 0) {
                 // 拿到订单id进入支付
-                if(res.orderId) {
-                    window.location.href= 'http://yy.zgbafy.com/api/wxpay/toPay?orderNo='+res.orderId;
+                if(res.orderNo) {
+                    window.location.href= 'http://yy.zgbafy.com/api/wxpay/toPay?orderNo='+res.orderNo;
                 }else {
                     layer.msg(res.msg);
                 }
@@ -125,17 +125,128 @@ function applicationInfo(id) {
         type: 'get',
         success: function(res) {
             // 渲染订单详情
-            var deliveryType;
-            if(res.deliveryType == "01") {
+            var deliveryType; // 获取病历方式
+            if(res.deliveryType == "01") { //自提
                 deliveryType= "自提"
-            }else if(res.deliveryType == "02") {
+                $('#page4>.receiveInfo').css('display','none');
+
+            }else if(res.deliveryType == "02") { //邮寄
                 deliveryType= "邮寄"
-            } 
+                $('#page4>.receiveInfo').css('display','block');
+                $('#page4>.receiveInfo>.content>.orderItem>.receiverName').text(res.receiverName);
+                $('#page4>.receiveInfo>.content>.orderItem>.receiverTel').text(res.receiverMobile);
+                $('#page4>.receiveInfo>.content>.orderItem>.receiverAdd').text(res.areaCity+res.address);
+            }
+
+            var papersType; // 证件类型
+            if(res.appointmentType == "01") {
+                papersType= "身份证"
+                $('#page4>.orderInfo>.content>.uploadFile').css('display','none')
+                $('#page4>.orderInfo>.content>.fileBoxType1').css('display','block')
+                // $('#page4>.orderInfo>.content>.fileBoxType1>.labContent>.paitentsID_up').attr('src',paitentsID_up);
+                // $('#page4>.orderInfo>.content>.fileBoxType1>.labContent>.paitentsID_down').attr('src',paitentsID_down);
+                // $('#page4>.orderInfo>.content>.fileBoxType1>.labContent>.pay_invoice').attr('src',pay_invoice);
+            }else if(res.appointmentType == "02") {
+                papersType= "身份证(代办)"
+                $('#page4>.orderInfo>.content>.uploadFile').css('display','none')
+                $('#page4>.orderInfo>.content>.fileBoxType2').css('display','block')
+                // $('#page4>.orderInfo>.content>.fileBoxType2>.labContent>.agentID_up').attr('src',agentID_up);
+                // $('#page4>.orderInfo>.content>.fileBoxType2>.labContent>.agentID_down').attr('src',agentID_down);
+                // $('#page4>.orderInfo>.content>.fileBoxType2>.labContent>.agentID_hand').attr('src',agentID_hand);
+                // $('#page4>.orderInfo>.content>.fileBoxType2>.labContent>.paitentsID_up').attr('src',paitentsID_up);
+                // $('#page4>.orderInfo>.content>.fileBoxType2>.labContent>.paitentsID_down').attr('src',paitentsID_down);
+                // $('#page4>.orderInfo>.content>.fileBoxType2>.labContent>.permitText').attr('src',permitText);
+
+            }else if(res.appointmentType == "03") {
+                papersType= "未成年(代办)";
+                $('#page4>.orderInfo>.content>.uploadFile').css('display','none')
+                $('#page4>.orderInfo>.content>.fileBoxType3').css('display','block')
+                // $('#page4>.orderInfo>.content>.fileBoxType3>.labContent>.houseBook_home').attr('src',houseBook_home);
+                // $('#page4>.orderInfo>.content>.fileBoxType3>.labContent>.guardianID_up').attr('src',guardianID_up);
+                // $('#page4>.orderInfo>.content>.fileBoxType3>.labContent>.pay_invoice').attr('src',pay_invoice);
+            }else if(res.appointmentType == "04") {
+                papersType= "死亡(代办)"
+                $('#page4>.orderInfo>.content>.uploadFile').css('display','none')
+                $('#page4>.orderInfo>.content>.fileBoxType4').css('display','block')
+                // $('#page4>.orderInfo>.content>.fileBoxType4>.labContent>.death_prove').attr('src',death_prove);
+                // $('#page4>.orderInfo>.content>.fileBoxType4>.labContent>.relation_prove').attr('src',relation_prove);
+                // $('#page4>.orderInfo>.content>.fileBoxType4>.labContent>.agentID_hand').attr('src',agentID_hand);
+                // $('#page4>.orderInfo>.content>.fileBoxType4>.labContent>.agentID_up').attr('src',agentID_up);
+                // $('#page4>.orderInfo>.content>.fileBoxType4>.labContent>.agentID_down').attr('src',agentID_down);
+            }
+
+            if(res.note == '' || res.note == "undefined" || res.note == "null") {
+                $('#page4>.orderInfo>.content>.addTextBox').css('display','none');                
+            }else {
+                $('#page4>.orderInfo>.content>.orderItem>.addText').text(res.note);
+            }
+            
+
+
+            var startDate= new Date(res.ryDate)
+            startDate= startDate.getFullYear()+'-'+(startDate.getMonth()>10?startDate.getMonth():"0"+startDate.getMonth())+'-'+(startDate.getDate()>10?startDate.getDate():"0"+startDate.getDate());
+            var endDate= new Date(res.cyDate)
+            endDate= endDate.getFullYear()+'-'+(endDate.getMonth()>10?endDate.getMonth():"0"+endDate.getMonth())+'-'+(endDate.getDate()>10?endDate.getDate():"0"+endDate.getDate());
+            if(startDate == '' || startDate === undefined || startDate == "null") {
+                $('#page4>.orderInfo>.content>.startTimeBox').css('display','none');
+            }else {
+                $('#page4>.orderInfo>.content>.orderItem>.startTime').text(startDate);
+            }
+            var typeList= (res.printContents).split(',');
+            
+            for (let i = 0; i < typeList.length; i++) {
+                console.log(typeList);
+                var type= typeList[i];
+                var typeItem= '<tr class="useItem">'+
+                                 '<td class="type">'+type+'</td>'+
+                                 '<td class="amount">'+'×' +res.printNum+'</td>'+
+                              '</tr>'
+                $('#selectTypeBox').append(typeItem);
+            }
             $('#page4>.orderInfo>.content>.orderItem>.hospitalName').text(res.hospitalName);
             $('#page4>.orderInfo>.content>.orderItem>.receiveType').text(deliveryType);
             $('#page4>.orderInfo>.content>.orderItem>.bookTel').text(res.yyMobile);
+            $('#page4>.orderInfo>.content>.orderItem>.name').text(res.patientName);
+            $('#page4>.orderInfo>.content>.orderItem>.papersType').text(papersType);
+            $('#page4>.orderInfo>.content>.orderItem>.papersNum').text(res.patientCard);
+            $('#page4>.orderInfo>.content>.orderItem>.endTime').text(endDate);
+            $('#page4>.orderInfo>.content>.orderItem>.hospitalNum').text(res.fprn);
+            if(res.payStatus == "01") { // 待支付
+                $('.paymentBox>.submitPay').css('display','block'); 
+            }else if(res.payStatus == "02") { // 已支付
+                $('.paymentBox>.submitPay').css('display','block');
+                $('#payBtn').attr('disabled',true);
+                $('#payBtn').unbind('click');
+                $('#payBtn').text('已支付');
+            }else if(res.payStatus == "03") { // 已支付预付款
+                $('.paymentBox>.submitPay').css('display','block'); 
+            }
         }
     })
+}
+
+/* -------------- 物流查询 ----------------- */ 
+function getExpressInfo(id) {
+    $.ajax({
+        url: baseUrl+'/api/common/searchwuliu?id='+id,
+        type: 'post',
+        success: function(res) {
+            // var expressType
+            // if(res.type ==  "01") { //EMS
+            //     expressType= "EMS";
+            // }else if(res.type ==  "02") { //顺丰
+            //     expressType= "顺丰";
+            // }
+            res= JSON.parse(res);
+            if(res.Success) {
+                $('#page4>.orderInfo>.content>.orderItem>.labTitle>.expressType').text(res.ShipperCode);
+                for (let i = 0; i < res.Traces.length; i++) {
+                    var expressItem= ' <span class="labContent expressInfoText">'+res.Traces[i].AcceptStation+' ( '+res.Traces[i].AcceptTime+' ) '+'</span> </br></br>'
+                    $('#expressTextList').append(expressItem);
+                }
+            }
+        }
+    })       
 }
 
 // function uploadFile(inputEle,containerEle){

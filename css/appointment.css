@@ -194,6 +194,13 @@
     width: 50%;
 }
 
+#page4>.expressInfoBox {
+    display: none;
+}
+#page4>.expressInfoBox>.content>.orderItem>.expressInfoText {
+    line-height: 1.5rem;
+}
+
 /* -------医院列表信息页面------- */
 
 .hospitalContainer>.containerInner,
