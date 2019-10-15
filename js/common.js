@@ -101,8 +101,12 @@ function createOrder(orderPar) {
         data: orderPar,
         success: function(res){
             if(res.code == 0) {
-                // alert('订单提交成功')
-                console.log('订单提交成功')
+                // 拿到订单id进入支付
+                if(res.orderId) {
+                    window.location.href= 'http://yy.zgbafy.com/api/wxpay/toPay?orderNo='+res.orderId;
+                }else {
+                    layer.msg(res.msg);
+                }
             }else {
                 layer.msg(res.msg);
             }
@@ -114,6 +118,25 @@ function createOrder(orderPar) {
 } 
 
 
+/* -------------- 预约详情 ----------------- */ 
+function applicationInfo(id) {
+    $.ajax({
+        url: baseUrl+'/api/appointment/'+id,
+        type: 'get',
+        success: function(res) {
+            // 渲染订单详情
+            var deliveryType;
+            if(res.deliveryType == "01") {
+                deliveryType= "自提"
+            }else if(res.deliveryType == "02") {
+                deliveryType= "邮寄"
+            } 
+            $('#page4>.orderInfo>.content>.orderItem>.hospitalName').text(res.hospitalName);
+            $('#page4>.orderInfo>.content>.orderItem>.receiveType').text(deliveryType);
+            $('#page4>.orderInfo>.content>.orderItem>.bookTel').text(res.yyMobile);
+        }
+    })
+}
 
 // function uploadFile(inputEle,containerEle){
 // 	var file=inputEle[0].files[0];

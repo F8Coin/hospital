@@ -615,21 +615,14 @@
     $(function(){
         var baseUrl= 'http://49.235.145.4';
         var hospitalId= getUrlParam('hospitalId')?getUrlParam('hospitalId'):"1"; // 没有传入id默认显示id为1的医院
+        var openId= getUrlParam('openid'); // 获取用户openid
+        var ids= getUrlParam('ids'); // 获取用户组件id
+        var pageIndex= getUrlParam('pageIndex'); // 预约列表里传递过来的
         var payPrice= 0;
         var userTypeList= [];
         var copyTotal= 0;
         var provinceAddText= '';
         var infoAddText= '';
-        // 获取用户openID
-        // $.ajax({
-        //     url: 'http://yy.zgbafy.com/api/wx/getOpenId',
-        //     type: 'get',
-        //     success: function (res) { 
-        //         console.log(res);
-        //      }
-        // })
-        // window.location.href = 'http://yy.zgbafy.com/api/wx/getOpenId';
-
         // 获取医院信息方法
         function hospitalInfo(id) {
             $.ajax({
@@ -669,7 +662,18 @@
         getTypeList(hospitalId)
 
         // 点击下一步
-        var pageIndex= 1;
+        if(pageIndex == 4) {
+            $('#pageBox .stepPage').css('display','none');
+            $('#pageBox .stepPage:eq(3)').css('display','block');
+            $('.headerBar>ul>li').find('.stepCont>.stepNum').css('display','none'); // 隐藏流程数字
+            $('.headerBar>ul>li').find('.stepCont>.succFlag').css('display','block'); // 显示当前完成状态标识
+            $('#nextBtn').css('dispay','none');
+            $('.paymentBox>.submitPay').css('display','block'); 
+
+            applicationInfo(ids) // 根据id查询详情
+        }else {
+            pageIndex= 1;
+        }
         $('#nextBtn').on('click',function(){
             if(pageIndex<4) {
                 if(pageIndex == 1) {
@@ -686,7 +690,7 @@
                     if(isSelect != "0" && isAgree != "0") {
                         var receiveType= $('#receiveTypeBox>.optionAbout>.selectBtn:checked').siblings('.price').text();
                         var bookTel= $('#bookTel>.mobile').val();
-                        var bookTel= $('#bookCode>.codeText').val();
+                        var bookCode= $('#bookCode>.codeText').val();
                         var showReceiveInfo= false;
                         $('#page4>.orderInfo>.content>.orderItem>.receiveType').text(receiveType);
                         $('#page4>.orderInfo>.content>.orderItem>.bookTel').text(bookTel);
@@ -1057,7 +1061,7 @@
             var addInfo= $('#page4>.receiveInfo>.content>.orderItem>.receiverAdd').text();
             var payMoney= Number($('.paymentBox>.payInfo>.payAmount').text());
             var bookTel= $('#page4>.orderInfo>.content>.orderItem>.bookTel').text();
-            var bookCode= $('#bookTel>.bookText').val(); 
+            var bookCode= $('#bookCode>.bookText').val(); 
 
             if(receiveType == "自提") {
                 receiveType= "01"
@@ -1130,7 +1134,7 @@
                 // status: "", // 订单状态 
                 // updateBy: "",
                 // updateTime: "",
-                wxId: '123456', // 微信OPENID-必填
+                wxId: openId, // 微信OPENID-必填
                 yyMobile: bookTel, // 预约人手机号码-必填
             }
 

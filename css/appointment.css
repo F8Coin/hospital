@@ -264,7 +264,7 @@
 
 /* -------我的申请信息页面------- */
 .applicationContainer>.headerBar>.title {
-    font-size: 1.875rem;
+    font-size: 1.25rem;
     line-height: 7.5rem;
     color: #ffffff;
     text-align: center;
@@ -286,17 +286,49 @@
     font-size: .875rem;
 }
 
-.applicationContainer>.containerInner>.orderList>.baseInfo>.stateFlag {
-    /* width: 3rem;
-    height: 3rem;
-    border-radius: 50%; */
+.applicationContainer>.containerInner>.orderList>.baseInfo>.stateBox {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.applicationContainer>.containerInner>.orderList>.baseInfo>.stateBox>.stateFlag {
     width: 3.75rem;
     height: 3.75rem;
     margin-right: .375rem;
-    vertical-align: middle;
+    vertical-align: top;
 }
+
+.applicationContainer>.containerInner>.orderList>.baseInfo>.stateBox>.stateText {
+    font-size: .875rem;
+    color: #337ab7;
+}
+
 
 .applicationContainer>.containerInner>.orderList>.baseInfo>.patientsName {
     margin-left: .75rem;
 }
 
+
+#orderListBox>.baseInfo {
+    position: relative;
+}
+
+#orderListBox>.baseInfo>.typeBox {
+    display: block;
+}
+
+#orderListBox>.baseInfo>.patientsName {
+    font-size: 1rem;
+}
+
+#orderListBox>.baseInfo>.hospitalName {
+    position: absolute;
+    right: 0rem;
+    left: 12.5rem;
+    top: 1.375rem;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* 需要显示的行数 */
+    -webkit-box-orient: vertical;
+    font-size: 1rem;
+}

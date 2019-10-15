@@ -2,12 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 ,user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>首页</title>
     <link rel="stylesheet" href="./css/regist.css">
     <link rel="stylesheet" href="./css/index.css">
-    <!-- <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css"> -->
 </head>
 <body>
     <div class="body" id="home_bg"></div>
@@ -16,8 +15,8 @@
                 <p class="hostipalName"></p>
                 <p class="hostipalTel"></p>
                 <div class="footerBox">
-                    <a href="./view/appointment.html" class="applyBtn">立即申请</a>
-                    <a href="./view/myApplication.html" class="myApply">我的预约</a>
+                    <a href="javascript:void(0)" class="applyBtn">立即申请</a>
+                    <a href="javascript:void(0)" class="myApply">我的预约</a>
                 </div>
         </div>
     </div>
@@ -25,21 +24,21 @@
 </html>
 <script src="./js/jQuery/jquery-3.4.0.js"></script>
 <script src="./js/common.js"></script>
-<!-- <script src="https://unpkg.com/element-ui/lib/index.js"></script> -->
 <script>
     $(function(){
-        // 匹配移动端设备高度
-        // $("#home_bg").height($("#home_bg").height());
-        // var baseUrl= 'http://49.235.145.4' ;
-        // var id= getUrlParam(hospitalId)?getUrlParam(hospitalId) : 1
-        // $.ajax({
-        //     url: '/api/hospital?hospitalId='+id,
-        //     type: 'GET',
-        //     success: $(function(res){
-        //         $('.containerInner>.hostipalName').text(res.name);
-        //         $('.containerInner>.hostipalTel').text(res.mobile);
-        //     })
+        // 1.0 立即申请
+        var hospitalId= getUrlParam('hospitalid')?getUrlParam('hospitalid'):"1"; // 没有传入id默认显示id为1的医院
+        var openId= getUrlParam('openid') // 获取用户openid
+        var target1Url= './view/appointment.html?hospitalid='+hospitalId+'&openid='+openId;
+        var target2Url= './view/myApplication.html?openid='+openId;
+        $('.applyBtn').on('click',function(){
+            window.location.href= target1Url;
+        })
 
-        // })
+        // 2.0 我的预约
+        $('.myApply').on('click',function(){
+            window.location.href= target2Url;
+        })
+
     })
 </script>
