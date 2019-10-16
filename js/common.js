@@ -94,27 +94,32 @@ $('.zoomList').on('click','li',function(e){
 
 
 /* -------------- 提交订单 ----------------- */
-function createOrder(orderPar) {
-    $.ajax({
-        url: baseUrl+'/api/appointment/add',
-        type: 'POST',
-        data: orderPar,
-        success: function(res){
-            if(res.code == 0) {
-                // 拿到订单id进入支付
-                if(res.orderNo) {
-                    window.location.href= 'http://yy.zgbafy.com/api/wxpay/toPay?orderNo='+res.orderNo;
+function createOrder(orderPar,orderNo) {
+    if(orderNo == "" || orderNo == "undefined" || orderNo == "null") {
+        $.ajax({
+            url: baseUrl+'/api/appointment/add',
+            type: 'POST',
+            data: orderPar,
+            success: function(res){
+                if(res.code == 0) {
+                    // 拿到订单id进入支付
+                    if(res.orderNo) {
+                        window.location.href= 'http://yy.zgbafy.com/api/wxpay/toPay?orderNo='+res.orderNo;
+                    }else {
+                        layer.msg(res.msg);
+                    }
                 }else {
                     layer.msg(res.msg);
                 }
-            }else {
+            },
+            error: function(res) {
                 layer.msg(res.msg);
             }
-        },
-        error: function(res) {
-            layer.msg(res.msg);
-        }
-    })
+        })
+    }else {
+        window.location.href= 'http://yy.zgbafy.com/api/wxpay/toPay?orderNo='+orderNo;
+    }
+    
 } 
 
 

@@ -628,6 +628,7 @@
         var ids= getUrlParam('ids'); // 获取用户组件id
         var pageIndex= getUrlParam('pageIndex'); // 预约列表里传递过来的
         var expressType= getUrlParam('expressType'); // 预约列表里传递过来的
+        var orderNo= getUrlParam('orderNo'); // 获取订单ID
         var payPrice= 0;
         var userTypeList= [];
         var copyTotal= 0;
@@ -1156,8 +1157,8 @@
                 yyMobile: bookTel, // 预约人手机号码-必填
                 code: bookCode // 手机验证码
             }
-
-            createOrder(parameter); // 创建订单
+ 
+            createOrder(parameter,orderNo); // 创建订单
         })
     })
 </script>
