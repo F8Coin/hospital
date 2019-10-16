@@ -1,4 +1,5 @@
-var baseUrl= 'http://49.235.145.4';
+// var baseUrl= 'http://49.235.145.4';
+var baseUrl= 'http://yy.zgbafy.com';
 // 获取url中传递的参数
 function getUrlParam(name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
