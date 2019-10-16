@@ -692,8 +692,11 @@
         $('#nextBtn').on('click',function(){
             if(pageIndex<4) {
                 if(pageIndex == 1) {
-                    var isSelect= $('#receiveTypeBox>.optionAbout>.selectBtn:checked').length
-                    var isAgree= $('.agreeRule>.isAgree:checked').length
+                    var isSelect= $('#receiveTypeBox>.optionAbout>.selectBtn:checked').length;
+                    var isAgree= $('.agreeRule>.isAgree:checked').length;
+                    var bookTel= $('#bookTel>.mobile').val();
+                    var bookCode= $('#bookCode>.codeText').val();
+
                     if(isSelect == "0") {
                         layer.msg('请选择获取病例方式')
                         return;
@@ -702,10 +705,19 @@
                         layer.msg('请勾选病案复印申请协议')
                         return;
                     }
+
+                    if(bookTel == "" || bookTel == "undefined" || bookTel == "null") {
+                        layer.msg('请输入预约人手机号码');
+                        return;
+                    }
+
+                    if(bookCode == "" || bookCode == "undefined" || bookCode == "null") {
+                        layer.msg('请输入验证码');
+                        return;
+                    }
+
                     if(isSelect != "0" && isAgree != "0") {
                         var receiveType= $('#receiveTypeBox>.optionAbout>.selectBtn:checked').siblings('.price').text();
-                        var bookTel= $('#bookTel>.mobile').val();
-                        var bookCode= $('#bookCode>.codeText').val();
                         var showReceiveInfo= false;
                         $('#page4>.orderInfo>.content>.orderItem>.receiveType').text(receiveType);
                         $('#page4>.orderInfo>.content>.orderItem>.bookTel').text(bookTel);
