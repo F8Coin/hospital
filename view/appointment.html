@@ -622,9 +622,9 @@
 <script>
    
     $(function(){
-        var baseUrl= 'http://49.235.145.4';
+        // var baseUrl= 'http://49.235.145.4';
         var hospitalId= getUrlParam('hospitalId')?getUrlParam('hospitalId'):"1"; // 没有传入id默认显示id为1的医院
-        var openId= getUrlParam('openid'); // 获取用户openid
+        var openId= getUrlParam('openId'); // 获取用户openid
         var ids= getUrlParam('ids'); // 获取用户组件id
         var pageIndex= getUrlParam('pageIndex'); // 预约列表里传递过来的
         var expressType= getUrlParam('expressType'); // 预约列表里传递过来的
@@ -639,7 +639,8 @@
                 url: baseUrl+'/api/hospital/'+id,
                 type: 'GET',
                 success: function(res){
-                    $('.hospitalInfo .hospitalIcon').attr('src','http://49.235.145.4'+res.logo);
+                    // $('.hospitalInfo .hospitalIcon').attr('src','http://49.235.145.4'+res.logo);
+                    $('.hospitalInfo .hospitalIcon').attr('src',baseUrl+res.logo);
                     $('.hospitalInfo .hospitalName').text(res.name);
                     $('#rulesText>.tipBox>.tipText').text(res.notice);
                     $('.customInfo .customBox .title>.name').text(res.sender);
