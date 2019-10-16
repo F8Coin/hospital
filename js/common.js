@@ -149,36 +149,36 @@ function applicationInfo(id) {
                 papersType= "身份证"
                 $('#page4>.orderInfo>.content>.uploadFile').css('display','none')
                 $('#page4>.orderInfo>.content>.fileBoxType1').css('display','block')
-                // $('#page4>.orderInfo>.content>.fileBoxType1>.labContent>.paitentsID_up').attr('src',paitentsID_up);
-                // $('#page4>.orderInfo>.content>.fileBoxType1>.labContent>.paitentsID_down').attr('src',paitentsID_down);
-                // $('#page4>.orderInfo>.content>.fileBoxType1>.labContent>.pay_invoice').attr('src',pay_invoice);
+                $('#page4>.orderInfo>.content>.fileBoxType1>.labContent>.paitentsID_up').attr('src',res.filePaths[0]);
+                $('#page4>.orderInfo>.content>.fileBoxType1>.labContent>.paitentsID_down').attr('src',res.filePaths[1]);
+                $('#page4>.orderInfo>.content>.fileBoxType1>.labContent>.pay_invoice').attr('src',res.filePaths[2]);
             }else if(res.appointmentType == "02") {
                 papersType= "身份证(代办)"
                 $('#page4>.orderInfo>.content>.uploadFile').css('display','none')
                 $('#page4>.orderInfo>.content>.fileBoxType2').css('display','block')
-                // $('#page4>.orderInfo>.content>.fileBoxType2>.labContent>.agentID_up').attr('src',agentID_up);
-                // $('#page4>.orderInfo>.content>.fileBoxType2>.labContent>.agentID_down').attr('src',agentID_down);
-                // $('#page4>.orderInfo>.content>.fileBoxType2>.labContent>.agentID_hand').attr('src',agentID_hand);
-                // $('#page4>.orderInfo>.content>.fileBoxType2>.labContent>.paitentsID_up').attr('src',paitentsID_up);
-                // $('#page4>.orderInfo>.content>.fileBoxType2>.labContent>.paitentsID_down').attr('src',paitentsID_down);
-                // $('#page4>.orderInfo>.content>.fileBoxType2>.labContent>.permitText').attr('src',permitText);
+                $('#page4>.orderInfo>.content>.fileBoxType2>.labContent>.agentID_up').attr('src',res.filePaths[0]);
+                $('#page4>.orderInfo>.content>.fileBoxType2>.labContent>.agentID_down').attr('src',res.filePaths[1]);
+                $('#page4>.orderInfo>.content>.fileBoxType2>.labContent>.agentID_hand').attr('src',res.filePaths[2]);
+                $('#page4>.orderInfo>.content>.fileBoxType2>.labContent>.paitentsID_up').attr('src',res.filePaths[3]);
+                $('#page4>.orderInfo>.content>.fileBoxType2>.labContent>.paitentsID_down').attr('src',res.filePaths[4]);
+                $('#page4>.orderInfo>.content>.fileBoxType2>.labContent>.permitText').attr('src',res.filePaths[5]);
 
             }else if(res.appointmentType == "03") {
                 papersType= "未成年(代办)";
                 $('#page4>.orderInfo>.content>.uploadFile').css('display','none')
                 $('#page4>.orderInfo>.content>.fileBoxType3').css('display','block')
-                // $('#page4>.orderInfo>.content>.fileBoxType3>.labContent>.houseBook_home').attr('src',houseBook_home);
-                // $('#page4>.orderInfo>.content>.fileBoxType3>.labContent>.guardianID_up').attr('src',guardianID_up);
-                // $('#page4>.orderInfo>.content>.fileBoxType3>.labContent>.pay_invoice').attr('src',pay_invoice);
+                $('#page4>.orderInfo>.content>.fileBoxType3>.labContent>.houseBook_home').attr('src',res.filePaths[0]);
+                $('#page4>.orderInfo>.content>.fileBoxType3>.labContent>.guardianID_up').attr('src',res.filePaths[1]);
+                $('#page4>.orderInfo>.content>.fileBoxType3>.labContent>.pay_invoice').attr('src',res.filePaths[2]);
             }else if(res.appointmentType == "04") {
                 papersType= "死亡(代办)"
                 $('#page4>.orderInfo>.content>.uploadFile').css('display','none')
                 $('#page4>.orderInfo>.content>.fileBoxType4').css('display','block')
-                // $('#page4>.orderInfo>.content>.fileBoxType4>.labContent>.death_prove').attr('src',death_prove);
-                // $('#page4>.orderInfo>.content>.fileBoxType4>.labContent>.relation_prove').attr('src',relation_prove);
-                // $('#page4>.orderInfo>.content>.fileBoxType4>.labContent>.agentID_hand').attr('src',agentID_hand);
-                // $('#page4>.orderInfo>.content>.fileBoxType4>.labContent>.agentID_up').attr('src',agentID_up);
-                // $('#page4>.orderInfo>.content>.fileBoxType4>.labContent>.agentID_down').attr('src',agentID_down);
+                $('#page4>.orderInfo>.content>.fileBoxType4>.labContent>.death_prove').attr('src',res.filePaths[0]);
+                $('#page4>.orderInfo>.content>.fileBoxType4>.labContent>.relation_prove').attr('src',res.filePaths[1]);
+                $('#page4>.orderInfo>.content>.fileBoxType4>.labContent>.agentID_hand').attr('src',res.filePaths[2]);
+                $('#page4>.orderInfo>.content>.fileBoxType4>.labContent>.agentID_up').attr('src',res.filePaths[3]);
+                $('#page4>.orderInfo>.content>.fileBoxType4>.labContent>.agentID_down').attr('src',res.filePaths[4]);
             }
 
             if(res.note == '' || res.note == "undefined" || res.note == "null") {
@@ -201,7 +201,7 @@ function applicationInfo(id) {
             var typeList= (res.printContents).split(',');
             
             for (let i = 0; i < typeList.length; i++) {
-                console.log(typeList);
+                // console.log(typeList);
                 var type= typeList[i];
                 var typeItem= '<tr class="useItem">'+
                                  '<td class="type">'+type+'</td>'+
