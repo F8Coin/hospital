@@ -187,12 +187,30 @@ function applicationInfo(id) {
                 $('#page4>.orderInfo>.content>.orderItem>.addText').text(res.note);
             }
             
+            var startDate= new Date(res.ryDate);
+            var startYear= startDate.getFullYear();
+            var startMonth= startDate.getMonth()+1;
+            var startDay= startDate.getDate();
+            if(startMonth<10) {
+                startMonth= "0"+startMonth;
+            };
+            if(startDay<10) {
+                startDay= "0"+startDay;
+            };
+            startDate= startYear+"-"+startMonth+"-"+startDay
 
+            var endDate= new Date(res.cyDate);
+            var endYear= endDate.getFullYear();
+            var endMonth= endDate.getMonth()+1;
+            var endDay= endDate.getDate();
+            if(endMonth<10) {
+                endMonth= "0"+endMonth;
+            };
+            if(endDay<10) {
+                endDay= "0"+endDay;
+            };
+            endDate= endYear+"-"+endMonth+"-"+endDay
 
-            var startDate= new Date(res.ryDate)
-            startDate= startDate.getFullYear()+'-'+(startDate.getMonth()>10?startDate.getMonth():"0"+startDate.getMonth())+'-'+(startDate.getDate()>10?startDate.getDate():"0"+startDate.getDate());
-            var endDate= new Date(res.cyDate)
-            endDate= endDate.getFullYear()+'-'+(endDate.getMonth()>10?endDate.getMonth():"0"+endDate.getMonth())+'-'+(endDate.getDate()>10?endDate.getDate():"0"+endDate.getDate());
             if(startDate == '' || startDate === undefined || startDate == null) {
                 $('#page4>.orderInfo>.content>.startTimeBox').css('display','none');
             }else {
@@ -217,6 +235,7 @@ function applicationInfo(id) {
             $('#page4>.orderInfo>.content>.orderItem>.papersNum').text(res.patientCard);
             $('#page4>.orderInfo>.content>.orderItem>.endTime').text(endDate);
             $('#page4>.orderInfo>.content>.orderItem>.hospitalNum').text(res.fprn);
+            $('.paymentBox>.payInfo>.payAmount').text(res.copyAmount);
             if(res.payStatus == "01") { // 待支付
                 $('.paymentBox>.submitPay').css('display','block'); 
             }else if(res.payStatus == "02") { // 已支付

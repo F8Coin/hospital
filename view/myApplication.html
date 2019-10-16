@@ -36,13 +36,23 @@
                 url: baseUrl+'/api/appointment/list?wxId='+id,
                 type: 'post',
                 success: function(res){
+                    res= res.reverse();
                     for (let i = 0; i < res.length; i++) {
                         // 1.0 审核状态
                         var checkStatus;
                         var payStatus;
                         var deliveryType; 
                         var createDate= new Date(res[i].createTime)
-                        createDate= createDate.getFullYear()+'-'+(createDate.getMonth()>10?createDate.getMonth():"0"+createDate.getMonth())+'-'+(createDate.getDate()>10?createDate.getDate():"0"+createDate.getDate());
+                        var createYear= createDate.getFullYear();
+                        var createMonth= createDate.getMonth()+1;
+                        var createDay= createDate.getDate();
+                        if(createMonth<10) {
+                            createMonth= "0"+createMonth;
+                        };
+                        if(createDay<10) {
+                            createDay= "0"+createDay;
+                        };
+                        createDate= createYear+"-"+createMonth+"-"+createDay
                         if(res[i].status == "01") {
                             checkStatus= "待审核";
                         }else if(res[i].status == "02") {
