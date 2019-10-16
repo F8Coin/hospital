@@ -706,12 +706,12 @@
                         return;
                     }
 
-                    if(bookTel == "" || bookTel == "undefined" || bookTel == "null") {
+                    if(bookTel == "" || bookTel == "undefined" || bookTel == null) {
                         layer.msg('请输入预约人手机号码');
                         return;
                     }
 
-                    if(bookCode == "" || bookCode == "undefined" || bookCode == "null") {
+                    if(bookCode == "" || bookCode == "undefined" || bookCode == null) {
                         layer.msg('请输入验证码');
                         return;
                     }
@@ -959,7 +959,7 @@
                        userTypeList.push(type);
                    }
 
-                   if(addText == '' || addText == "undefined" || addText == "null") {
+                   if(addText == '' || addText == "undefined" || addText == null) {
                         $('#page4>.orderInfo>.content>.addTextBox').css('display','none');                
                     }else {
                         $('#page4>.orderInfo>.content>.orderItem>.addText').text(addText);
@@ -1169,7 +1169,8 @@
                 yyMobile: bookTel, // 预约人手机号码-必填
                 code: bookCode // 手机验证码
             }
- 
+            console.log(orderNo);
+            console.log(orderNo);
             createOrder(parameter,orderNo); // 创建订单
         })
     })

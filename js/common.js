@@ -96,7 +96,7 @@ $('.zoomList').on('click','li',function(e){
 
 /* -------------- 提交订单 ----------------- */
 function createOrder(orderPar,orderNo) {
-    if(orderNo == "" || orderNo == "undefined" || orderNo == "null") {
+    if(orderNo == "" || orderNo == "undefined" || orderNo == null) {
         $.ajax({
             url: baseUrl+'/api/appointment/add',
             type: 'POST',
@@ -181,7 +181,7 @@ function applicationInfo(id) {
                 $('#page4>.orderInfo>.content>.fileBoxType4>.labContent>.agentID_down').attr('src',res.filePaths[4]);
             }
 
-            if(res.note == '' || res.note == "undefined" || res.note == "null") {
+            if(res.note == '' || res.note == "undefined" || res.note == null) {
                 $('#page4>.orderInfo>.content>.addTextBox').css('display','none');                
             }else {
                 $('#page4>.orderInfo>.content>.orderItem>.addText').text(res.note);
@@ -193,7 +193,7 @@ function applicationInfo(id) {
             startDate= startDate.getFullYear()+'-'+(startDate.getMonth()>10?startDate.getMonth():"0"+startDate.getMonth())+'-'+(startDate.getDate()>10?startDate.getDate():"0"+startDate.getDate());
             var endDate= new Date(res.cyDate)
             endDate= endDate.getFullYear()+'-'+(endDate.getMonth()>10?endDate.getMonth():"0"+endDate.getMonth())+'-'+(endDate.getDate()>10?endDate.getDate():"0"+endDate.getDate());
-            if(startDate == '' || startDate === undefined || startDate == "null") {
+            if(startDate == '' || startDate === undefined || startDate == null) {
                 $('#page4>.orderInfo>.content>.startTimeBox').css('display','none');
             }else {
                 $('#page4>.orderInfo>.content>.orderItem>.startTime').text(startDate);
