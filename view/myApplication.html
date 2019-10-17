@@ -100,7 +100,8 @@
         }
 
         if(oepnId == "" || openId == "undefined" || openId == null) {
-            layer.msg('服务异常,请稍后重试')
+            layer.msg('服务异常,请稍后重试');
+            return ;
         }
         getApplicationList(openId);// 查询我的预约记录
 
