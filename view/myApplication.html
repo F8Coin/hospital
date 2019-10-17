@@ -37,65 +37,71 @@
                 type: 'post',
                 success: function(res){
                     res= res.reverse();
-                    for (let i = 0; i < res.length; i++) {
-                        // 1.0 审核状态
-                        var checkStatus;
-                        var payStatus;
-                        var deliveryType; 
-                        var createDate= new Date(res[i].createTime)
-                        var createYear= createDate.getFullYear();
-                        var createMonth= createDate.getMonth()+1;
-                        var createDay= createDate.getDate();
-                        if(createMonth<10) {
-                            createMonth= "0"+createMonth;
-                        };
-                        if(createDay<10) {
-                            createDay= "0"+createDay;
-                        };
-                        createDate= createYear+"-"+createMonth+"-"+createDay
-                        if(res[i].status == "01") {
-                            checkStatus= "待审核";
-                        }else if(res[i].status == "02") {
-                            checkStatus= "审核通过";
-                        }else if(res[i].status == "03") {
-                            checkStatus= "审核不通过";
+                    if(res.length != 0) {
+                        for (let i = 0; i < res.length; i++) {
+                            // 1.0 审核状态
+                            var checkStatus;
+                            var payStatus;
+                            var deliveryType; 
+                            var createDate= new Date(res[i].createTime)
+                            var createYear= createDate.getFullYear();
+                            var createMonth= createDate.getMonth()+1;
+                            var createDay= createDate.getDate();
+                            if(createMonth<10) {
+                                createMonth= "0"+createMonth;
+                            };
+                            if(createDay<10) {
+                                createDay= "0"+createDay;
+                            };
+                            createDate= createYear+"-"+createMonth+"-"+createDay
+                            if(res[i].status == "01") {
+                                checkStatus= "待审核";
+                            }else if(res[i].status == "02") {
+                                checkStatus= "审核通过";
+                            }else if(res[i].status == "03") {
+                                checkStatus= "审核不通过";
+                            }
+                            // 2.0 支付状态
+                            if(res[i].payStatus == "01") {
+                                payStatus= "待支付";
+                            }else if(res[i].payStatus == "02") {
+                                payStatus= "已支付";
+                            }else if(res[i].payStatus == "03") {
+                                payStatus= "已支付预约款";
+                            }
+                            // 3.0 获取方式
+                            if(res[i].deliveryType == "01") {
+                                deliveryType= "自提";
+                            }else if(res[i].deliveryType == "02") {
+                                deliveryType= "邮寄";
+                            }else if(res[i].deliveryType == "03") {
+                                deliveryType= "物流查询";
+                            }
+                            var orderItem= '<a class="baseInfo orderInfo" href="./appointment.html?pageIndex=4&orderNo='+res[i].orderNo+'&expressType='+res[i].appointmentType+'&ids='+res[i].id+'">'+
+                                                '<span class="stateBox">'+
+                                                    '<img src="../img/userIcon03.jpg" alt="" class="stateFlag"><br>'+
+                                                    '<span class="stateText succState">'+checkStatus+'</span>'+
+                                                '</span>'+
+                                                '<span class="patientsName">'+res[i].patientName+'</span>'+
+                                                '<span class="hospitalName">'+res[i].hospitalName+'</span>'+
+                                                '<span class="typeBox">'+
+                                                    '<span class="sendType type">'+payStatus+'</span>'+
+                                                    '<span class="recordType type">'+deliveryType+'</span>'+
+                                                    '<span class="recordType type">'+createDate+'</span>'+
+                                                '</span>'+
+                                            '</a>'
+                            $('#orderListBox').append(orderItem);             
                         }
-                        // 2.0 支付状态
-                        if(res[i].payStatus == "01") {
-                            payStatus= "待支付";
-                        }else if(res[i].payStatus == "02") {
-                            payStatus= "已支付";
-                        }else if(res[i].payStatus == "03") {
-                            payStatus= "已支付预约款";
-                        }
-                        // 3.0 获取方式
-                        if(res[i].deliveryType == "01") {
-                            deliveryType= "自提";
-                        }else if(res[i].deliveryType == "02") {
-                            deliveryType= "邮寄";
-                        }else if(res[i].deliveryType == "03") {
-                            deliveryType= "物流查询";
-                        }
-                        var orderItem= '<a class="baseInfo orderInfo" href="./appointment.html?pageIndex=4&orderNo='+res[i].orderNo+'&expressType='+res[i].appointmentType+'&ids='+res[i].id+'">'+
-                                            '<span class="stateBox">'+
-                                                '<img src="../img/userIcon03.jpg" alt="" class="stateFlag"><br>'+
-                                                '<span class="stateText succState">'+checkStatus+'</span>'+
-                                            '</span>'+
-                                            '<span class="patientsName">'+res[i].patientName+'</span>'+
-                                            '<span class="hospitalName">'+res[i].hospitalName+'</span>'+
-                                            '<span class="typeBox">'+
-                                                '<span class="sendType type">'+payStatus+'</span>'+
-                                                '<span class="recordType type">'+deliveryType+'</span>'+
-                                                '<span class="recordType type">'+createDate+'</span>'+
-                                            '</span>'+
-                                        '</a>'
-                        $('#orderListBox').append(orderItem);             
+                    }else {
+                        layer.msg('暂无您的预约记录')
                     }
                 } 
             })
         }
 
-        
+        if(oepnId == "" || openId == "undefined" || openId == null) {
+            layer.msg('服务异常,请稍后重试')
+        }
         getApplicationList(openId);// 查询我的预约记录
 
     })
