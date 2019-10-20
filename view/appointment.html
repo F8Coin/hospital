@@ -685,10 +685,10 @@
             pageIndex= 1;
         }
 
-        if(expressType == "03") {
-            $('#page4>.expressInfoBox').css('display','block');
-            getExpressInfo(ids);  // 根据id查询物流
-        }
+        // if(expressType == "02") {
+        //     $('#page4>.expressInfoBox').css('display','block');
+        //     getExpressInfo(ids);  // 根据id查询物流
+        // }
         $('#nextBtn').on('click',function(){
             if(pageIndex<4) {
                 if(pageIndex == 1) {
@@ -1169,8 +1169,6 @@
                 yyMobile: bookTel, // 预约人手机号码-必填
                 code: bookCode // 手机验证码
             }
-            console.log(orderNo);
-            console.log(orderNo);
             createOrder(parameter,orderNo); // 创建订单
         })
     })

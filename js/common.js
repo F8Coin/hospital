@@ -142,6 +142,10 @@ function applicationInfo(id) {
                 $('#page4>.receiveInfo>.content>.orderItem>.receiverName').text(res.receiverName);
                 $('#page4>.receiveInfo>.content>.orderItem>.receiverTel').text(res.receiverMobile);
                 $('#page4>.receiveInfo>.content>.orderItem>.receiverAdd').text(res.areaCity+res.address);
+                if(res.status == "03") {
+                    $('#page4>.expressInfoBox').css('display','block');
+                    getExpressInfo(ids);  // 根据id查询物流    
+                }
             }
 
             var papersType; // 证件类型
