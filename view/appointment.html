@@ -653,7 +653,7 @@
         }
         
         hospitalInfo(hospitalId);
-        if(hospitalId == "999") {
+        if(hospitalId == "1") {
             $('.baseInfo>.more').css('display','block');
         } 
 
@@ -1044,6 +1044,10 @@
             document.activeElement.blur();
         });
 
+        // 收件省市区
+        $('#expressArea').focus(function(){
+            document.activeElement.blur();
+        })
         // page2选择证件类型
         $('.zoomList').on('click','li',function(e){
             var showIndex= $(this).index();

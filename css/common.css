@@ -1,22 +1,23 @@
 
 /* 父子容器 */
 .containerOut {
-    position: relative;
+    /* position: relative; */
+    /* padding-bottom: 4.25rem; */
     background-color: rgba(250, 250, 250, 1);
-    padding-bottom: 4.25rem;
 }
 
 .containerOut .headerBar {
     height: 7.5rem;
     width: 100%;
-    position: absolute;
+    /* position: absolute; */
     background-color: #836FFF;
 }
 
 .containerOut .containerInner {
-    position: relative;
-    top: 3.75rem;
+    /* position: relative; */
+    /* top: 3.75rem; */
     padding: 0rem 1.875rem;
+    margin-top: 1.875rem;
     margin-bottom: 5.625rem;
 }
 
