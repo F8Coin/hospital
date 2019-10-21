@@ -30,7 +30,7 @@
         var hospitalId= getUrlParam('hospitalId')?getUrlParam('hospitalId'):"1"; // 没有传入id默认显示id为1的医院
         var openId= getUrlParam('openId') // 获取用户openid
         var target1Url= './view/appointment.html?hospitalId='+hospitalId+'&openId='+openId;
-        var target2Url= './view/myApplication.html?openId='+openId;
+        var target2Url= './view/myApplication.html?openId='+openId+"&1.0";
         $('.applyBtn').on('click',function(){
             window.location.href= target1Url;
         })

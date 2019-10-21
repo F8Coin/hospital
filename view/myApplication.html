@@ -43,17 +43,17 @@
                             var checkStatus;
                             var payStatus;
                             var deliveryType; 
-                            var createDate= new Date(res[i].createTime)
-                            var createYear= createDate.getFullYear();
-                            var createMonth= createDate.getMonth()+1;
-                            var createDay= createDate.getDate();
-                            if(createMonth<10) {
-                                createMonth= "0"+createMonth;
-                            };
-                            if(createDay<10) {
-                                createDay= "0"+createDay;
-                            };
-                            createDate= createYear+"-"+createMonth+"-"+createDay
+                            var createDate= res[i].createTime;
+                            // var createYear= createDate.getFullYear();
+                            // var createMonth= createDate.getMonth()+1;
+                            // var createDay= createDate.getDate();
+                            // if(createMonth<10) {
+                            //     createMonth= "0"+createMonth;
+                            // };
+                            // if(createDay<10) {
+                            //     createDay= "0"+createDay;
+                            // };
+                            // createDate= createYear+"-"+createMonth+"-"+createDay
                             if(res[i].status == "01") {
                                 checkStatus= "待审核";
                             }else if(res[i].status == "02") {

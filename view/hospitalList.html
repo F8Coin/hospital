@@ -64,7 +64,10 @@
 <script src="../js/common.js"></script>
 <script>
     $(function(){
-        // var baseUrl= 'http://49.235.145.4';
+        // 医院分布省份
+        var provinceTypeNameNew= [];
+        var provinceType= [];
+
         // 获取所有医院列表方法
         function getHospitalList(flag) {
             $.ajax({
@@ -94,7 +97,7 @@
                                                     '<img src="'+res[i].logo+'" alt="" class="hospitalIcon">'+
                                                     '<span class="hospitalName">'+res[i].name+'</span>'+
                                                     '<p class="typeBox">'+
-                                                        '<!-- <span class="recordType type">住院病历</span> -->'+
+                                                        '<!-- <span class="recordType type">非热门医院</span> -->'+
                                                         '<span class="sendType type">邮寄</span>'+
                                                         '<span class="sendType type">自提</span>'+
                                                         '<!-- <span class="sendType type">预约自提</span> -->'+
@@ -144,7 +147,7 @@
                                                     '</p>'+
                                                 '</a>'
         
-                                $('#hospitalBox').append(hospitalItem);
+                            $('#hospitalBox').append(hospitalItem);
                         }
                         
                     }
@@ -197,43 +200,34 @@
         // 获取热门医院
         getHospitalList("hot")
 
-        // 根据输入的医院名称或省份查询
-        $('#searchBtn').on('click',function(){
-            var searchText= $('.headerBar .searchBox .searchText').val();
-            if(searchText) {
-                // 判断是根据省份查还是医院名称查
-                switch (searchText) {
-                    case "广东省":
-                        getHospitalprovince(01);
-                        break;
-                    case "湖南省":
-                        getHospitalprovince(02);
-                        break;
-                    case "江西省":
-                        getHospitalprovince(03);
-                        break;
-                    case "河南省":
-                        getHospitalprovince(04);
-                        break;
-                    case "江苏省":
-                        getHospitalprovince(05);
-                        break;
-                
-                    default:
-                        getHospitalName(searchText);
-                        break;
+        // 获取医院类别
+        $.ajax({
+            url: baseUrl+'/api/hospital/list',
+            type: 'GET',
+            success: function(res) {
+                for (var i = 0; i < res.length; i++) {
+                    if(!provinceTypeNameNew.includes(res[i].typeName)) {
+                        provinceTypeNameNew[i]= res[i].typeName; 
+                        var provinceItem= '<option>'+res[i].typeName+'</option>'
+                        $('#provincesList').append(provinceItem); 
+                    }
+
                 }
                 
-            }else {
-                getHospitalList("hot") // 搜索条件为空查询热门医院
             }
         })
 
-        var provincesList= ['广东省','湖南省','江西省','河南省','江苏省']
-        for (let i = 0; i < provincesList.length; i++) {
-            var provinceItem= '<option>'+provincesList[i]+'</option>'
-            $('#provincesList').append(provinceItem)
-        }
+        // 根据输入的医院名称或省份查询
+        $('#searchBtn').on('click',function(){
+            var searchText= $('.headerBar .searchBox .searchText').val();
+            if(provinceTypeNameNew.includes(searchText)) {
+                getHospitalprovince(searchText);
+            }else if(searchText == "" || searchText == null || searchText == "undefined") {
+                getHospitalList("hot") // 搜索条件为空查询热门医院
+            }else {
+                getHospitalName(searchText);
+            }
+        })
 
     })
 </script>

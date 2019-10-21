@@ -191,29 +191,29 @@ function applicationInfo(id) {
                 $('#page4>.orderInfo>.content>.orderItem>.addText').text(res.note);
             }
             
-            var startDate= new Date(res.ryDate);
-            var startYear= startDate.getFullYear();
-            var startMonth= startDate.getMonth()+1;
-            var startDay= startDate.getDate();
-            if(startMonth<10) {
-                startMonth= "0"+startMonth;
-            };
-            if(startDay<10) {
-                startDay= "0"+startDay;
-            };
-            startDate= startYear+"-"+startMonth+"-"+startDay
+            var startDate= res.ryDate;
+            // var startYear= startDate.getFullYear();
+            // var startMonth= startDate.getMonth()+1;
+            // var startDay= startDate.getDate();
+            // if(startMonth<10) {
+            //     startMonth= "0"+startMonth;
+            // };
+            // if(startDay<10) {
+            //     startDay= "0"+startDay;
+            // };
+            // startDate= startYear+"-"+startMonth+"-"+startDay
 
-            var endDate= new Date(res.cyDate);
-            var endYear= endDate.getFullYear();
-            var endMonth= endDate.getMonth()+1;
-            var endDay= endDate.getDate();
-            if(endMonth<10) {
-                endMonth= "0"+endMonth;
-            };
-            if(endDay<10) {
-                endDay= "0"+endDay;
-            };
-            endDate= endYear+"-"+endMonth+"-"+endDay
+            var endDate= res.cyDate;
+            // var endYear= endDate.getFullYear();
+            // var endMonth= endDate.getMonth()+1;
+            // var endDay= endDate.getDate();
+            // if(endMonth<10) {
+            //     endMonth= "0"+endMonth;
+            // };
+            // if(endDay<10) {
+            //     endDay= "0"+endDay;
+            // };
+            // endDate= endYear+"-"+endMonth+"-"+endDay
 
             if(startDate == '' || startDate === undefined || startDate == null) {
                 $('#page4>.orderInfo>.content>.startTimeBox').css('display','none');
