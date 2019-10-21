@@ -316,7 +316,7 @@
                             <!--遮罩层-->
                             <div id="areaMask" class="mask"></div>
                         </div>
-                        <input class="placeholderText receiverAdd" type="text" placeholder="详细地址: 如街道、小区、门牌号、楼栋号">
+                        <input id="receiverAddAbout" class="placeholderText receiverAdd" type="text" placeholder="详细地址: 如街道、小区、门牌号、楼栋号">
                     </div>
                 </div>
             </div>
@@ -1046,6 +1046,9 @@
 
         // 收件省市区
         $('#expressArea').focus(function(){
+            document.activeElement.blur();
+        })
+        $('#receiverAddAbout').focus(function(){
             document.activeElement.blur();
         })
         // page2选择证件类型
