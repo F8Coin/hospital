@@ -91,41 +91,13 @@
                                                 '</span>'+
                                             '</a>'
                             $('#orderListBox').append(orderItem);             
-                        }
-                        // 2.0 支付状态
-                        if(res[i].payStatus == "01") {
-                            payStatus= "待支付";
-                        }else if(res[i].payStatus == "02") {
-                            payStatus= "已支付";
-                        }else if(res[i].payStatus == "03") {
-                            payStatus= "已支付预约款";
-                        }
-                        // 3.0 获取方式
-                        if(res[i].deliveryType == "01") {
-                            deliveryType= "自提";
-                        }else if(res[i].deliveryType == "02") {
-                            deliveryType= "邮寄";
-                        }
-                        var orderItem= '<a class="baseInfo orderInfo" href="./appointment.html?pageIndex=4&orderNo='+res[i].orderNo+'&expressType='+res[i].deliveryType+'&ids='+res[i].id+'">'+
-                                            '<span class="stateBox">'+
-                                                '<img src="../img/userIcon03.jpg" alt="" class="stateFlag"><br>'+
-                                                '<span class="stateText succState">'+checkStatus+'</span>'+
-                                            '</span>'+
-                                            '<span class="patientsName">'+res[i].patientName+'</span>'+
-                                            '<span class="hospitalName">'+res[i].hospitalName+'</span>'+
-                                            '<span class="typeBox">'+
-                                                '<span class="sendType type">'+payStatus+'</span>'+
-                                                '<span class="recordType type">'+deliveryType+'</span>'+
-                                                '<span class="recordType type">'+createDate+'</span>'+
-                                            '</span>'+
-                                        '</a>'
-                        $('#orderListBox').append(orderItem);             
+                        }         
                     }
                 } 
             })
         }
 
-        if(oepnId == "" || openId == "undefined" || openId == null) {
+        if(openId == "" || openId == "undefined" || openId == null) {
             layer.msg('服务异常,请稍后重试');
             return ;
         }
