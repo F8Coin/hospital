@@ -66,7 +66,8 @@
     $(function(){
         // 医院分布省份
         var provinceTypeNameNew= [];
-        var provinceType= [];
+        var provinceTypeNew= [];
+        var provinceListNew= [];
 
         // 获取所有医院列表方法
         function getHospitalList(flag) {
@@ -207,9 +208,14 @@
             success: function(res) {
                 for (var i = 0; i < res.length; i++) {
                     if(!provinceTypeNameNew.includes(res[i].typeName)) {
-                        provinceTypeNameNew[i]= res[i].typeName; 
+                        var type= res[i].type;
+                        var typeName= res[i].typeName;
+                        var provinceItemNew= {typeName:typeName,type:type}
+                        provinceTypeNew[provinceTypeNew.length]= res[i].type;
+                        provinceTypeNameNew[provinceTypeNameNew.length]= res[i].typeName; 
+                        provinceListNew[provinceListNew.length]= provinceItemNew;
                         var provinceItem= '<option>'+res[i].typeName+'</option>'
-                        $('#provincesList').append(provinceItem); 
+                        $('#provincesList').append(provinceItem);
                     }
 
                 }
@@ -221,7 +227,14 @@
         $('#searchBtn').on('click',function(){
             var searchText= $('.headerBar .searchBox .searchText').val();
             if(provinceTypeNameNew.includes(searchText)) {
-                getHospitalprovince(searchText);
+                var type;
+                for (let i = 0; i < provinceListNew.length; i++) {
+                    if(provinceListNew[i].typeName == searchText) {
+                        type= provinceListNew[i].type;
+                    }
+                    
+                }
+                getHospitalprovince(type);
             }else if(searchText == "" || searchText == null || searchText == "undefined") {
                 getHospitalList("hot") // 搜索条件为空查询热门医院
             }else {

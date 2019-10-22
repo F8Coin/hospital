@@ -55,11 +55,13 @@
                             // };
                             // createDate= createYear+"-"+createMonth+"-"+createDay
                             if(res[i].status == "01") {
-                                checkStatus= "待审核";
+                                checkStatus= "待审批";
                             }else if(res[i].status == "02") {
-                                checkStatus= "审核通过";
+                                checkStatus= "审批通过";
                             }else if(res[i].status == "03") {
-                                checkStatus= "审核不通过";
+                                checkStatus= "快递中或自取";
+                            }else if(res[i].status == "04") {
+                                checkStatus= "审批不通过";
                             }
                             // 2.0 支付状态
                             if(res[i].payStatus == "01") {
@@ -67,7 +69,7 @@
                             }else if(res[i].payStatus == "02") {
                                 payStatus= "已支付";
                             }else if(res[i].payStatus == "03") {
-                                payStatus= "已支付预约款";
+                                payStatus= "已退回多预付";
                             }
                             // 3.0 获取方式
                             if(res[i].deliveryType == "01") {
@@ -77,9 +79,10 @@
                             }else if(res[i].deliveryType == "03") {
                                 deliveryType= "物流查询";
                             }
+                            var hospitalLogo= res[i].hospitalLogo == null?'../img/userIcon03.jpg':res[i].hospitalLogo;
                             var orderItem= '<a class="baseInfo orderInfo" href="./appointment.html?pageIndex=4&orderNo='+res[i].orderNo+'&expressType='+res[i].appointmentType+'&ids='+res[i].id+'">'+
                                                 '<span class="stateBox">'+
-                                                    '<img src="../img/userIcon03.jpg" alt="" class="stateFlag"><br>'+
+                                                    '<img src="'+hospitalLogo+'" alt="" class="stateFlag"><br>'+
                                                     '<span class="stateText succState">'+checkStatus+'</span>'+
                                                 '</span>'+
                                                 '<span class="patientsName">'+res[i].patientName+'</span>'+

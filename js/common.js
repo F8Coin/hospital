@@ -87,6 +87,9 @@ function getCode() {
 //     } 
 // }
 
+$("input,textarea").on("blur", function() {
+    window.scroll(0, 0);
+  });
 
 /* -------------- 类型选择 ----------------- */
 $('.zoomList').on('click','li',function(e){
@@ -248,7 +251,10 @@ function applicationInfo(id) {
                 $('#payBtn').unbind('click');
                 $('#payBtn').text('已支付');
             }else if(res.payStatus == "03") { // 已支付预付款
-                $('.paymentBox>.submitPay').css('display','block'); 
+                $('.paymentBox>.submitPay').css('display','block');
+                $('#payBtn').attr('disabled',true);
+                $('#payBtn').unbind('click');
+                $('#payBtn').text('已退回多预付'); 
             }
         }
     })

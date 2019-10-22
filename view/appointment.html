@@ -621,9 +621,7 @@
 <script src="../js/common.js"></script>
 <script>
    //  解决input 输入框回弹
-    document.body.addEventListener('focusout', () => {   
-        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
-    })
+    
     $(function(){
         // var baseUrl= 'http://49.235.145.4';
         var hospitalId= getUrlParam('hospitalId')?getUrlParam('hospitalId'):"1"; // 没有传入id默认显示id为1的医院
