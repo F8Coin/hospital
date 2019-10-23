@@ -78,7 +78,7 @@
                     $('#hospitalBox').empty();
                     for (var i = 0; i < res.length; i++) {
                         if(res[i].isHot == "1") { // 热门医院
-                            var hospitalItem= '<a class="baseInfo hospitalInfo" href="./appointment.html?hospitalId='+res[i].id+'">'+
+                            var hospitalItem= '<a class="baseInfo hospitalInfo" href="./appointment.html?isMore=0&hospitalId='+res[i].id+'">'+
                                                 '<img src="'+res[i].logo+'" alt="" class="hospitalIcon">'+
                                                 '<span class="hospitalName">'+res[i].name+'</span>'+
                                                 '<p class="typeBox">'+

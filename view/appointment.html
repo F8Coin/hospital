@@ -630,6 +630,7 @@
         var pageIndex= getUrlParam('pageIndex'); // 预约列表里传递过来的
         var expressType= getUrlParam('expressType'); // 预约列表里传递过来的
         var orderNo= getUrlParam('orderNo'); // 获取订单ID
+        var isMore=  getUrlParam('isMore'); // 是否显示更多医院 
         var payPrice= 0;
         var userTypeList= [];
         var copyTotal= 0;
@@ -654,7 +655,7 @@
         }
         
         hospitalInfo(hospitalId);
-        if(hospitalId == "1") {
+        if(hospitalId == "1" || isMore == 0) { 
             $('.baseInfo>.more').css('display','block');
         } 
 
