@@ -105,6 +105,7 @@ function createOrder(orderPar,orderNo) {
             type: 'POST',
             data: orderPar,
             success: function(res){
+                $('#payBtn').removeAttr('disabled');
                 if(res.code == 0) {
                     // 拿到订单id进入支付
                     if(res.orderNo) {
@@ -117,10 +118,12 @@ function createOrder(orderPar,orderNo) {
                 }
             },
             error: function(res) {
+                $('#payBtn').removeAttr('disabled');
                 layer.msg(res.msg);
             }
         })
     }else {
+        $('#payBtn').removeAttr('disabled');
         window.location.href= 'http://yy.zgbafy.com/api/wxpay/toPay?orderNo='+orderNo;
     }
     

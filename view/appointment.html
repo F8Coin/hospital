@@ -1084,6 +1084,7 @@
 
         // 提交订单并支付
         $('#payBtn').on('click',function(){
+            $(this).prop('disabled',true);
             var parameter= {};
             var imgList= [];
             userTypeList= userTypeList.join();
