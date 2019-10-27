@@ -619,6 +619,7 @@
 <script src="../js/jquery.spinner.js"></script>
 <script src="../lib/area/jquery.area.js"></script>
 <script src="../js/common.js"></script>
+
 <script>
    //  解决input 输入框回弹
     
@@ -1016,6 +1017,8 @@
             }
             if(data.day < 10 ) {
                 day= "0"+data.day;
+            }else {
+                day= data.day;
             }
             var beginTime= data.year+'-'+month+'-'+day
             $('#startDate').val(beginTime); // 入院时间      
@@ -1039,9 +1042,12 @@
             }
             if(data.day < 10 ) {
                 day= "0"+data.day;
+            }else {
+                day= data.day; 
             }
             var endTime= data.year+'-'+month+'-'+day
             $('#endDate').val(endTime); // 出院时间 
+            console.log(endTime);
         });
 
         $("#endDate").focus(function(){
@@ -1184,4 +1190,53 @@
             createOrder(parameter,orderNo); // 创建订单
         })
     })
+</script>
+
+<script>
+var input= document.querySelectorAll('input');
+var textarea= document.getElementsByTagName('textarea');    
+// ios回弹解决        
+const windowHeight = window.innerHeight
+for (let i = 0; i < input.length; i++) {
+    input[i].addEventListener('blur', function () {
+    // console.log('调用开始');
+    let windowFocusHeight = window.innerHeight
+    if (windowHeight == windowFocusHeight) {
+      return
+    }
+    // console.log(windowHeight + '--' + windowFocusHeight);
+    // console.log('修复');
+    let currentPosition;
+    let speed = 1; //页面滚动距离
+    currentPosition = document.documentElement.scrollTop || document.body.scrollTop;
+    currentPosition -= speed;
+    window.scrollTo(0, currentPosition); //页面向上滚动
+    currentPosition += speed; //speed变量
+    window.scrollTo(0, currentPosition); //页面向下滚动
+    // console.log('调用结束')
+
+    })
+    
+}
+for (let i = 0; i < textarea.length; i++) {
+    textarea[i].addEventListener('blur', function () {
+    // console.log('调用开始');
+    let windowFocusHeight = window.innerHeight
+    if (windowHeight == windowFocusHeight) {
+      return
+    }
+    // console.log(windowHeight + '--' + windowFocusHeight);
+    // console.log('修复');
+    let currentPosition;
+    let speed = 1; //页面滚动距离
+    currentPosition = document.documentElement.scrollTop || document.body.scrollTop;
+    currentPosition -= speed;
+    window.scrollTo(0, currentPosition); //页面向上滚动
+    currentPosition += speed; //speed变量
+    window.scrollTo(0, currentPosition); //页面向下滚动
+    // console.log('调用结束')
+
+    })
+    
+}
 </script>

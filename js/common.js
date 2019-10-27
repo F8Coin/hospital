@@ -87,9 +87,9 @@ function getCode() {
 //     } 
 // }
 
-$("input,textarea").on("blur", function() {
-    window.scroll(0, 0);
-  });
+
+
+
 
 /* -------------- 类型选择 ----------------- */
 $('.zoomList').on('click','li',function(e){
@@ -352,5 +352,7 @@ function toSend(result,containerEle){//传给后端result为处理好后的base6
     })
 }
 
-
+// $("input,textarea").on("blur", function() {
+//     checkWxScroll();
+//   });
 

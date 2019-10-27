@@ -29,7 +29,7 @@
         // 1.0 立即申请
         var hospitalId= getUrlParam('hospitalId')?getUrlParam('hospitalId'):"1"; // 没有传入id默认显示id为1的医院
         var openId= getUrlParam('openId') // 获取用户openid
-        var target1Url= './view/appointment.html?hospitalId='+hospitalId+'&openId='+openId;
+        var target1Url= './view/appointment.html?hospitalId='+hospitalId+'&openId='+openId+"&"+Math.ceil(Math.random()*10000);
         var target2Url= './view/myApplication.html?openId='+openId+"&"+Math.ceil(Math.random()*10000);
         $('.applyBtn').on('click',function(){
             window.location.href= target1Url;
