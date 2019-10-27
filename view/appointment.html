@@ -636,6 +636,7 @@
         var copyTotal= 0;
         var provinceAddText= '';
         var infoAddText= '';
+        var transportMoney= '0' // 运费
         // 获取医院信息方法
         function hospitalInfo(id) {
             $.ajax({
@@ -650,6 +651,7 @@
                     $('.customInfo .customBox .tel>.text').text(res.senderMobile);
                     $('#page4>.orderInfo>.content>.orderItem>.hospitalName').text(res.name);
                     payPrice= res.prePay;
+                    transportMoney= res.preCarriage;
                 }
             })
         }
@@ -934,7 +936,7 @@
                     if(receiveType == "自提") {
                         $('.paymentBox>.payInfo>.payAmount').text(payPrice*amount);
                     }else if(receiveType == "邮寄") {
-                        $('.paymentBox>.payInfo>.payAmount').text(payPrice*amount+20);
+                        $('.paymentBox>.payInfo>.payAmount').text(payPrice*amount+transportMoney);
                     }
 
 
