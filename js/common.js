@@ -162,7 +162,7 @@ function applicationInfo(id) {
                 $('#page4>.orderInfo>.content>.fileBoxType1').css('display','block')
                 $('#page4>.orderInfo>.content>.fileBoxType1>.labContent>.paitentsID_up').attr('src',res.filePaths[0]);
                 $('#page4>.orderInfo>.content>.fileBoxType1>.labContent>.paitentsID_down').attr('src',res.filePaths[1]);
-                $('#page4>.orderInfo>.content>.fileBoxType1>.labContent>.pay_invoice').attr('src',res.filePaths[2]);
+                // $('#page4>.orderInfo>.content>.fileBoxType1>.labContent>.pay_invoice').attr('src',res.filePaths[2]);
             }else if(res.appointmentType == "02") {
                 papersType= "身份证(代办)"
                 $('#page4>.orderInfo>.content>.uploadFile').css('display','none')
@@ -180,7 +180,7 @@ function applicationInfo(id) {
                 $('#page4>.orderInfo>.content>.fileBoxType3').css('display','block')
                 $('#page4>.orderInfo>.content>.fileBoxType3>.labContent>.houseBook_home').attr('src',res.filePaths[0]);
                 $('#page4>.orderInfo>.content>.fileBoxType3>.labContent>.guardianID_up').attr('src',res.filePaths[1]);
-                $('#page4>.orderInfo>.content>.fileBoxType3>.labContent>.pay_invoice').attr('src',res.filePaths[2]);
+                // $('#page4>.orderInfo>.content>.fileBoxType3>.labContent>.pay_invoice').attr('src',res.filePaths[2]);
             }else if(res.appointmentType == "04") {
                 papersType= "死亡(代办)"
                 $('#page4>.orderInfo>.content>.uploadFile').css('display','none')
@@ -352,8 +352,3 @@ function toSend(result,containerEle){//传给后端result为处理好后的base6
         }
     })
 }
-
-// $("input,textarea").on("blur", function() {
-//     checkWxScroll();
-//   });
-
