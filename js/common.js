@@ -124,7 +124,7 @@ function createOrder(orderPar,orderNo) {
         })
     }else {
         $('#payBtn').removeAttr('disabled');
-        console.log('发起支付');
+        // console.log('发起支付');
         window.location.href= 'http://yy.zgbafy.com/api/wxpay/toPay?orderNo='+orderNo;
     }
     
