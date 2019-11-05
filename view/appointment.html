@@ -955,7 +955,7 @@
                     if(receiveType == "自提") {
                         $('.paymentBox>.payInfo>.payAmount').text(payPrice*amount);
                     }else if(receiveType == "邮寄") {
-                        $('.paymentBox>.payInfo>.payAmount').text(payPrice*amount+transportMoney);
+                        $('.paymentBox>.payInfo>.payAmount').text((payPrice*amount*1000+transportMoney*1000)/1000);
                     }
 
 
