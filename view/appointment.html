@@ -649,7 +649,8 @@
                     // $('.hospitalInfo .hospitalIcon').attr('src','http://49.235.145.4'+res.logo);
                     $('.hospitalInfo .hospitalIcon').attr('src',baseUrl+res.logo);
                     $('.hospitalInfo .hospitalName').text(res.name);
-                    $('#rulesText>.tipBox>.tipText').text(res.notice);
+                    // $('#rulesText>.tipBox>.tipText').text(res.notice);
+                    $('#rulesText>.tipBox>.tipText').html(res.notice);
                     $('.customInfo .customBox .title>.name').text(res.sender);
                     $('.customInfo .customBox .tel>.text').text(res.senderMobile);
                     $('#page4>.orderInfo>.content>.orderItem>.hospitalName').text(res.name);
