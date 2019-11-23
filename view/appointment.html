@@ -956,7 +956,7 @@
                     if(receiveType == "自提") {
                         $('.paymentBox>.payInfo>.payAmount').text(payPrice*amount);
                     }else if(receiveType == "邮寄") {
-                        $('.paymentBox>.payInfo>.payAmount').text(payPrice*amount+transportMoney);
+                        $('.paymentBox>.payInfo>.payAmount').text((payPrice*amount*1000+transportMoney*1000)/1000);
                     }
 
 
@@ -1142,7 +1142,8 @@
                 var paitentsID_down= $('#page4>.orderInfo>.content>.fileBoxType1>.labContent>.paitentsID_down').attr('src');
                 // var pay_invoice= $('#page4>.orderInfo>.content>.fileBoxType1>.labContent>.pay_invoice').attr('src');
                 papersType= "01";
-                imgList= [paitentsID_up,paitentsID_down,pay_invoice].join();
+                // imgList= [paitentsID_up,paitentsID_down,pay_invoice].join();
+                imgList= [paitentsID_up,paitentsID_down].join();
             }else if(papersType == "身份证(代办)") {
                 var agentID_up= $('#page4>.orderInfo>.content>.fileBoxType2>.labContent>.agentID_up').attr('src');
                 var agentID_down= $('#page4>.orderInfo>.content>.fileBoxType2>.labContent>.agentID_down').attr('src');
@@ -1157,7 +1158,8 @@
                 var guardianID_up= $('#page4>.orderInfo>.content>.fileBoxType3>.labContent>.guardianID_up').attr('src');
                 // var pay_invoice= $('#page4>.orderInfo>.content>.fileBoxType3>.labContent>.pay_invoice').attr('src');
                 papersType= "03";
-                imgList= [houseBook_home,guardianID_up,pay_invoice].join();
+                // imgList= [houseBook_home,guardianID_up,pay_invoice].join();
+                imgList= [houseBook_home,guardianID_up].join();
             }else if(papersType == "死亡(代办)") {
                 var death_prove= $('#page4>.orderInfo>.content>.fileBoxType4>.labContent>.death_prove').attr('src');
                 var relation_prove= $('#page4>.orderInfo>.content>.fileBoxType4>.labContent>.relation_prove').attr('src');
